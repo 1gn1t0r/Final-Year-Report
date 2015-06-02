@@ -232,7 +232,7 @@ The underlaying chord structure was kept fixed.
 The results indicate that a \ac{LTSM} network is able to compose with both local- and global structure from a set of training data \cite{Eck2002}.
 
 
-\section{Conclusion}
+\subsection{Conclusion}
 
 Simple feed-forward neural networks do not have the functionality to remember past history and thus do not have the capability to evaluate repetitive rhythmic patterns.
 
@@ -441,6 +441,14 @@ In this section we will briefly review some functions that may be used as a fitn
 Algorithms that help classify music could possibly be used as fitness functions, as this would rate the similarity of the evolved piece of music to a genre or style. These algorithms are found in section \ref{sec:music_class}.
 If work has been done that has used the music classification algorithm as a fitness function it will be listed in this section.
 
+Fitness functions can be categorized as follows:
+\begin{itemize}
+\item Interactive - The user provides the fitness of a piece of music
+\item Expert systems - The musical fitness is assigned according to best practices commonly studied in music theory
+\item Learning based functions - Fitness functions that learn from previous data
+\end{itemize}
+
+Learned fitness functions are sensitive to input data and the selection of features is a difficult task \cite{Dostal2013}.
 %********************************************************************************************************
 
 
