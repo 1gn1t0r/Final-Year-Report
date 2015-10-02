@@ -142,7 +142,30 @@ Tree based representations do not have a fixed size, as is commonly found in lin
 
 \chapter{Music composition algorithms} \label{chap:comp_algo}
 
+\section{Hidden Markov Model} \label{sec:hmm_backround}
+\ac{HMM} are stochastic methods that are used to model sequential data such as speech and gesture recognition.
+%TODO insert citation
+Under the Markov property the next observation is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. 
 
+The probability of any sequence of observations occuring when given a sequence of states is described by:
+\[\Pr(x,y) = \prod^T_{t=1} \Pr(y_t | y{t-1}) = \Pr(x_t | y_t) \]
+Where $\Pr(x_t|y_t)$ denotes the probability of observing $x_t$ given that the current state is $y_t$ and $\Pr(y_t|y_{t-1})$ denotes the probability of being in current state $y_t$ given that the previous state.
+
+An transition and emission matrix are commonly used the calculate $\Pr(y_t|y_{t-1})$ and $\Pr(x_t|y_t)$ respectively.
+
+%TODO
+\subsection{Learning with K Means clustering} \label{sec:kmeans}
+
+\subsection{Learning with Baum Welch}
+
+\subsection{Learnin with Viterbi}
+
+
+\section{Markov Chains} \label{sec:markov_backround}
+A Markov Chain is a stochastic model describing a sequence of events. The Markov Chain has the property that the probability of the next state depends only on the current state of the chain.
+\[ \Pr(X_n | X_1, X_2, \ldots, X_{n-1}) = P(X_n | X_{n-1})  \]
+
+Simple feed-forward neural networks do not have the functionality to remember past history and thus do not have the capability to evaluate repetitive rhythmic patterns.
 
 %\section{Harmony Search Algorithm}
 %Music pieces have been composed using a behavior-inspired evolutionary algorithm, harmony search (HS). The HS algorithm mimics behaviors of music players in an improvisation process, where each player produces a pitch based on one of three operations (random selection, memory consideration, and pitch adjustment) in order to find a better state of harmony which can be translated into a solution vector in the optimization process. When HS was applied to the organum (an early form of polyphonic music) composition, it could successfully compose harmony lines based on original Gregorian chant lines.
@@ -167,7 +190,7 @@ Figure \ref{ims:ANN_FF} shows a multilayer ANN in feed-forward topology. The fir
 
 Neurons have a number of inputs which are summed into an activation function. The activation function provides the output of a neuron.
 In figure \ref{ims:ANN_neuron} we have
-\[ o_j = \varphi(\sum^{n}_{i=1} x_i w_{ij})  \]
+\[ o_j = \varphi\left(\sum^{n}_{i=1} x_i w_{ij}\right)  \]
 A common activation function is the continous sigmoid function given by
 \begin{equation} \varphi(t) = \sigma(t) = \frac{1}{1+e^{-\beta t}}  \label{eq:sigmoid}\end{equation}
 where $\beta$ is the slope parameter.
