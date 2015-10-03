@@ -17,6 +17,8 @@ A large set of MIDI files (~600) were collected for style of music. The followin
 \item A mixture of Dance and Techno (214)
 \end{enumerate}
 
+These categories are not the final list of styles that will be included into the end user application.
+
 
 \chapter{Representation}
 This section discusses how music is represented internally in the system and how the data structures are designed. 
@@ -57,7 +59,7 @@ A track contains a sequence of melody sequences and is also described by an inst
 A composition is a sequence of tracks which can be played in parallel. 
 MIDI files are converted into compositions.
 
-\begin{figure}[ht]
+\begin{figure}
 \centerline{\includegraphics[width=400px]{../images/composition_illustration.pdf}}
 \caption{Illustration of a composition and its elements}
 \label{ims:compillu}
@@ -114,7 +116,6 @@ A third order Markov Chain was used. That is, the previous three notes constitut
 
 \section{Potential Improvements}
 \begin{itemize}
-\item Ensure songs have good harmony
 \item Define which instruments sound good with other instruments
 \item Pick which instruments can be slotted together
 \item Ensure different tracks accompany each other and are in harmony
