@@ -92,9 +92,9 @@ The user interface will be developed using \ac{WPF} and \ac{XAML}.
 \end{figure}
 
 \begin{figure}
-\centerline{\includegraphics[width=400px]{../images/ui_melody.pdf}}
+\centerline{\includegraphics[width=400px]{../images/ui_track.pdf}}
 \caption{User interface for melody generation}
-\label{ims:uicompose}
+\label{ims:uitrack}
 \end{figure}
 
 \begin{figure}
@@ -103,7 +103,30 @@ The user interface will be developed using \ac{WPF} and \ac{XAML}.
 \label{ims:uimetrics}
 \end{figure}
 
+Figure \ref{ims:uiplay} indicates the starting interface of the application. This interface provides controls for playback functionality, is responsible for displaying a visual of the song being currently played, provides saving and loading functionality and allows the user to randomize the current song using the parameters set in the compose view.
 
+Figure \ref{ims:uicompose} allows the user to select the music style or category for music to be generated in. A track is a sequence of notes played in a particular instrument. A user is able to add new tracks using the provided button, which takes them to a new window as in figure \ref{ims:uitrack}. If a user double clicks on a specific track the frequency metrics of the track are shown as in figure \ref{ims:uimetrics}.
+
+Figure \ref{ims:uitrack} allows the user to generate a track using a specific technique. This interface allows the user to select the type of technique for track generation and also displayes the progress. Once a track is generated it can be added to the list of tracks as in figure \ref{ims:uicompose}.
+
+Figure \ref{ims:uimetrics} displays a list of frequency metrics about the track selected. An example metric is the frequency of musical intervals within a melody ($\text{mi} = |p_i - p_{i-1}|$, where $p_i$ is the pitch at index $i$); more information about frequency metrics can be found in section \label{chap:metrics}.
+ 
+The visualization blocks in figures \ref{ims:uicompose} and \ref{ims:uitrack} will be a simple visual displaying the notes over time. A simplified music sheet representation will be used, something in the vein of figure \ref{ims:uiharrymusicsheet} (though simpler).
+
+\begin{figure}
+\centerline{\includegraphics[width=400px]{../images/ui_visualization.pdf}}
+\caption{Visualization of notes}
+\label{ims:uiharrymusicsheet}
+\end{figure}
+
+
+\begin{figure}
+\centerline{\includegraphics[width=400px]{../images/ui_control_blockdiagram.pdf}}
+\caption{State diagram of the user interface}
+\label{ims:uiflow}
+\end{figure}
+
+Figure \ref{ims:uiflow} shows the state diagram of the user interface.
 
 
 % Functionality and features

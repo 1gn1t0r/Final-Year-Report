@@ -93,7 +93,16 @@ Figure \ref{ims:hmmmelody} shows the melody generated with the \ac{HMM}. The res
 
 
 \chapter{Instrumental generation with Markov Chains}
-For this conceptual music generation technique a compositional engine will be designed that outputs melodies in a specific instrument. This concept will utilize Markov Chains to construct a probabilistic model for a sequence of notes. The probability of the next note occuring depends on the previous state of the chain. See section \ref{sec:markov_backround}.
+For this conceptual music generation technique a compositional engine will be designed that outputs melodies in a specific instrument. 
+
+In order to construct such an instrumental generator an algorithm is required that can predict time-series data.
+
+A large advantage of recurrent neural networks over Markov chains and \ac{HMM} is that neural networks have greater representational power and can take into account syntactic and semantic features. A \ac{RNN} does not make the Markov assumption and is able to take into account long term dependencies.
+
+Markov chains have the advantage of being much simpler to implement and are extremely fast and efficient with the proper implementation. 
+Recurrent Neural Networks are more difficult to implement and to train. Various training algorithms exist to train a \ac{RNN}. Training a recurrent neural network is slower than a regular feed forward network. The poor results obtained from the \ac{LSTM} network (See chapter \ref{ch:accomp_lstm}) dissuade us from using them for the instrumental generator.
+
+This concept will utilize Markov Chains to construct a probabilistic model for a sequence of notes. The probability of the next note occuring depends on the previous state of the chain. See section \ref{sec:markov_backround}.
 
 For this technique a different Markov Chain will be constructed for each instrument.
 For a certain instrument, all the notes for that instrument in a MIDI file were added to the Markov chain. This chain is used to generate notes according to a certain instrument.
@@ -114,6 +123,16 @@ For a certain instrument, all the notes for that instrument in a MIDI file were 
 
 A third order Markov Chain was used. That is, the previous three notes constitute the state of the model. A lower order would result in more novel and random melodies where a higher order would produce melodies with higher similarity.
 
+\section{Results}
+\begin{figure}
+\centerline{\includegraphics[width=400px]{../images/instrumental_acousticgrand.pdf}}
+\caption{Instrumental melody generated with a Markov Chain}
+\label{ims:instrumentalmc}
+\end{figure}
+
+Figure \ref{ims:instrumentalmc} shows a melody generated with a Markov Chain for the Piano. A third order Markov chain was used with this melody and overall it sounds pleasant. Melodies produced with Markov Chains dont have an overarching theme but do have a local structure and theme.
+
+
 \section{Potential Improvements}
 \begin{itemize}
 \item Define which instruments sound good with other instruments
@@ -121,9 +140,7 @@ A third order Markov Chain was used. That is, the previous three notes constitut
 \item Ensure different tracks accompany each other and are in harmony
 \end{itemize}
 
-
-
-\chapter{Accompaniment generation with a LSTM network}
+\chapter{Accompaniment generation with a LSTM network} \label{ch:accomp_lstm}
 The LSTM accompaniment is also generated for a specific instrument. 
 Since it is difficult to determine which track is the main melody of a composition an assumption is made that the main melody track is the first track found within a MIDI file. The accompaniment track is another track within the 
 
@@ -177,7 +194,16 @@ The data for the network consists of the melody track and the accompaniment trac
 \subsection{Results}
 Since the network requires an input melody track to construct an accompaniment track it does not face the same problems such as lack of structure which most other non-recurrent neural networks do.
 
-The output accompaniment can sometimes be pleasant, however a beter timing relation is required between the input and output notes. The network does not produce an accompaniment which is in harmony or in phase with the main melody track.
+The output accompaniment can sometimes be pleasant, however a beter timing relation is required between the input and output notes. Most of the produced melodies are repetitive, see figure \ref{ims:lstmaccomp}. The network does not produce an accompaniment which is in harmony or in phase with the main melody track.
+
+The results of the \ac{LSTM} network were surprisingly poor, in comparison with the Markov Chains. A \ac{RNN} has greater representational power and can take into account syntactic and semantic features. A \ac{RNN} also does not make the Markov assumption and is able to take into account long term dependencies. The poor performance of the \ac{LSTM} network is attributed to the implementation and the large training time required for good results.
+
+
+\begin{figure}
+\centerline{\includegraphics[width=400px]{../images/lstm_accomp.pdf}}
+\caption{Accompaniment melody produced with a \ac{LSTM} network}
+\label{ims:lstmaccomp}
+\end{figure}
 
 \chapter{Accompaniment generation with a Hidden Markov Model}
 For this experiment an attempt is made to produce an accompaniment based on the frequency of certain notes occuring in the accompaniment track given the melody track.
@@ -217,12 +243,21 @@ More specifically, for each note in the melody track the odds are calculated for
 
 
 \begin{figure}
-\centerline{\includegraphics[width=200px]{../images/hmm_illu.pdf}}
+\centerline{\includegraphics[width=250px]{../images/hmm_illu.pdf}}
 \caption{Illustration of a Hidden Markov Model}
 \label{ims:hmm_illu}
 \end{figure}
 
 Figure \ref{ims:hmm_illu} illustrates a Hidden Markov Model. The states $s_i$ could denote the notes of the main melody and the states $y_i$ could denote the accompaniment for melody track. The states $s_i$ are commonly hidden, however they are known in this case. The states $y_i$ are the output notes that we are interested in generating.
+
+\section{Results}
+Accompaniment generation with a Markov Model produces better results than with a \ac{LSTM} network. The states of the model are the notes of the main melody and the observations are the notes of the accompaniment. For a short input melody sequence the resulting accompaniment sounds rather pleasant and fits with the main melody. For longer melodies the accompaniment diverges from the main melody and is not in harmony.
+
+\begin{figure}
+\centerline{\includegraphics[width=300px]{../images/markov_model_accomp.pdf}}
+\caption{Accompaniment generated with Markov Model}
+\label{ims:hmm_accomp}
+\end{figure}
 
 
 \chapter{Genetic Algorithm for Melody Generation}
@@ -324,6 +359,8 @@ Genetic operations such as mutation and crossover may be used conventionally.
 \section{Metrics} \label{chap:metrics}
 Feature extraction is required to reduce the search space and to provide the fitness function with musically meaningful measures with which to rate the fitness. In this section we cover some quantitative metrics that may be used as measures to identify or represent music.
 
+The frequencies of a metric is used in the Cosine Similarity fitness function.
+
 The different types of metrics that will be used include:
 \begin{enumerate}
 \item Pitch - List of pitches
@@ -337,6 +374,7 @@ The different types of metrics that will be used include:
 \item Rhythm - duration of a note in addition to the following rest
 \item Rhythmic interval - relationship between adjacent note rhythms
 \item Rhythmic bi-gram - Pairs of adjacent rhythmic intervals.
+\item Chromatic tone duration - A pair of the chromatic tone and the duration
 \end{enumerate}
 
 Let $p$ denote the pitch of the note, where $0 \leq p < 128$.
@@ -356,8 +394,12 @@ and the rhythmic bi-gram
 In this manner we can build a metric vector, let $m_i(A)$ denote a metric's value at position $i$ for musical piece $A$. Then the metric vector is given by $\vec{M}_A = \{m_0(A), m_1(A), \ldots, m_n(A) \}$ 
 
 
-
 \section{Fitness functions}
+
+In this section two fitness functions are described which can be used for the Genetic Algorithm. \ac{NCD} and Cosine Similarity are described here.
+
+The fitness functions described in this section require the phenotype of an individual. Thus it is necessary to parse the genotype, the genetic tree of the individual down into a sequence of notes.
+
 \subsection{Cosine similarity}
 Some fitness functions such as Cosine similarity and Zipf's law operate on the features of music. 
 
@@ -384,8 +426,42 @@ In order to utilize the \ac{NCD} as a fitness function the following steps are t
 The fitness function that will be used is:
 \[f(x) =  \left(\sum_{\vec{T}\in\Omega} \text{NCD}(\vec{M_x}, \vec{T}) \right)^{-1}\]
 
+
+\section{Results}
+\begin{figure}
+\centerline{\includegraphics[width=300px]{../images/genetic_ncd.pdf}}
+\caption{Melody produced with a Genetic Algorithm using the \ac{NCD} fitness function}
+\label{ims:genetic_mel_ncd}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[width=300px]{../images/genetic_cosine_ctd_rb.pdf}}
+\caption{Melody produced with a Genetic Algorithm using the cosine similarity fitness function with chromatic tone duration and rhythmic bigram metrics}
+\label{ims:genetic_mel_ctdrb}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[width=300px]{../images/genetic_cosine_all.pdf}}
+\caption{Melody produced with a Genetic Algorithm using the cosine similarity fitness function with all frequency metrics}
+\label{ims:genetic_mel_mall}
+\end{figure}
+
+Figure \ref{ims:genetic_mel_ncd} indicates an excerpt of a melody produced with the Genetic Algorithm using the \ac{NCD} fitness function. The \ac{NCD} fitness function produced the worst results. The resulting melodies sounding chaotic and random.
+
+The melody produced in figure \ref{ims:genetic_mel_ctdrb} using the cosine similarity fitness function was rather pleasant and the rhythmic bigram and chromatic tone duration -frequency metrics produce pleasant melodies.
+
+The melody produced in figure \ref{ims:genetic_mel_mall} used the cosine similarity fitness function using all the frequency metrics. At times the melody is pleasant however off-sounding or out of key notes are a common occurence. The melodies also dont have structure. This indicates that some of the frequency metrics either dont work well in conjunction with each other or some frequency metrics have a negative effect on the pleasantness of melodies. 
+
+The following frequency metrics produced good or pleasant results:
+\begin{enumerate}
+\item Chromatic tone distance - intervals between repetition of chromatic tones
+\item Melodic interval - intervals between the current note and the previous note
+\item Rhythmic bigram - Pairs of adjacent rhythmic intervals
+\item Chromatic tone duration - A pair of the chromatic tone and the duration
+\end{enumerate}
+
+
 \section{Conclusion}
-In order to solve the problem of generating music algorithmically the task was broken down into its functional architecture. From this each functional unit and its interaction is made apparent. The core component of this project is the algorithm which is used to compose music
 
 The decision was made to utilize a genetic programming algorithm since the tree structure accommodates the hierarchical nature of music. Genetic programming provides flexibility, variety of possible styles and a large amount of research has been done one fitness functions for genetic algorithms.
 
@@ -393,12 +469,5 @@ Fitness functions require good measures that make it possible to rate musical pi
 
 Two fitness functions, namely Cosine similarity and \ac{NCD} were developed to incorporate these metrics.
 
+The results of different fitness functions were compared. \ac{NCD} performed the worst. Not all of the frequency metrics required for the cosine similarity fitness function produced good results. A subset of good frequency metrics were explored.
 
-\chapter{Conclusion}
-
-In order to construct such an instrumental generator a algorithm is required that can predict time-series data.
-
-A large advantage of recurrent neural networks over Markov chains and \ac{HMM} is that neural networks have greater representational power and can take into account syntactic and semantic features. A RNN does not make the Markov assumption and is able to take into account long term dependencies.
-
-Markov chains have the advantage of being much simpler to implement and are extremely fast and efficient with the proper implementation. 
-Recurrent Neural Networks are more difficult to implement and to train. Various training algorithms exist to train RNN. Training a recurrent neural network is slower than a regularlr feed forward network.
