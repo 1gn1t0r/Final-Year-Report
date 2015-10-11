@@ -111,7 +111,7 @@ He used the following representation for the \acs{LTSM} system:
 A melody would be represented differently in a linear genetic algorithm.
 A simple melody consisting only of a few notes could be represented as seen in figure \ref{ims:ga_melody}. Note the duration of a note is not defined and could be consider fixed.
 
-However it might be preferably to encode more events such rests, chords, dynamics, note duration and so on.
+However it might be preferable to encode more events such rests, chords, dynamics, note duration and so on.
 
 Tree based representations are found in genetic programming \cite{Langdon2008}. Minsky has argued that tree representation is more suited to music as it mimics the hierarchical structure that is found in music \cite{Minsky1992}.
 
@@ -150,10 +150,10 @@ Tree based representations do not have a fixed size, as is commonly found in lin
 
 \chapter{Music composition algorithms} \label{chap:comp_algo}
 
-\section{Hidden Markov Model} \label{sec:hmm_backround}
+\section{Hidden Markov Models} \label{sec:hmm_backround}
 \ac{HMM} are stochastic methods that are used to model sequential data such as speech and gesture recognition.
 %TODO insert citation
-Under the Markov property the next observation is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. 
+Under the Markov property the next observation is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. When a event is generated from a state, the model moves into a new state based on its transition probabilities. The term hidden is commonly used to indicate that many different state sequences can generate the same observed sequence of events.
 
 The probability of any sequence of observations occuring when given a sequence of states is described by:
 \[\Pr(x,y) = \prod^T_{t=1} \Pr(y_t | y{t-1}) = \Pr(x_t | y_t) \]
@@ -161,19 +161,29 @@ Where $\Pr(x_t|y_t)$ denotes the probability of observing $x_t$ given that the c
 
 An transition and emission matrix are commonly used the calculate $\Pr(y_t|y_{t-1})$ and $\Pr(x_t|y_t)$ respectively.
 
-%TODO
-\subsection{Learning with K Means clustering} \label{sec:kmeans}
+A variety of learning algorithms exist which compute the structure of the model and also calculate the emission and transmission matrices. For space concerns these will not be discussed.
 
-\subsection{Learning with Baum Welch}
+\acs{HMM} have been applied with some degree of success to music composition. A system has been developed for producing a counterpoint line to a cantus firmis in the style of Palestrina \cite{Farbood2001}. Another approach utilizes a \ac{HMM} for chorale melody harmonization \cite{Allan2004}.
 
-\subsection{Learnin with Viterbi}
 
 
 \section{Markov Chains} \label{sec:markov_backround}
 A Markov Chain is a stochastic model describing a sequence of events. The Markov Chain has the property that the probability of the next state depends only on the current state of the chain.
 \[ \Pr(X_n | X_1, X_2, \ldots, X_{n-1}) = P(X_n | X_{n-1})  \]
 
-Simple feed-forward neural networks do not have the functionality to remember past history and thus do not have the capability to evaluate repetitive rhythmic patterns.
+\begin{figure}
+\center
+\includegraphics[width=250px]{../images/markov_chain_example.pdf}
+\caption{Example of a Markov Chain}
+\label{ims:markov_chain_example}
+\end{figure}
+
+Figure \ref{ims:markov_chain_example} is an example of a Markov Chain. For each state there is a probability of proceeding to the next state. For example if the current state is F, there is a $10\%$ chance of the next state being F again, and a $90\%$ chance of the next state being A.
+
+A Markov Chain can have a order. For a simple note such as figure \ref{ims:markov_chain_example} if the current note is B then the note $A$ has a $30\%$ chance of being next. This is a first order Markov Chain.  A more complex chain of order 2 could have the current state being composed of two notes. Thus the next note is dependent on the previous two notes. A N-th order Markov chain can be represented by a transition matrix, which corresponds to a N+1 dimension probability table.
+
+Markov Chains must be derived from existing music and generate output of the same style as the input. This reduces the compositional value and novelty however it suits the purpose of generating music in a specific style \cite{Jarvelainen2000}.
+
 
 %\section{Harmony Search Algorithm}
 %Music pieces have been composed using a behavior-inspired evolutionary algorithm, harmony search (HS). The HS algorithm mimics behaviors of music players in an improvisation process, where each player produces a pitch based on one of three operations (random selection, memory consideration, and pitch adjustment) in order to find a better state of harmony which can be translated into a solution vector in the optimization process. When HS was applied to the organum (an early form of polyphonic music) composition, it could successfully compose harmony lines based on original Gregorian chant lines.
@@ -183,6 +193,7 @@ Simple feed-forward neural networks do not have the functionality to remember pa
 \section{Neural Networks}
 \subsection{Background}
 \begin{figure}
+\center
 \includegraphics[width=300px]{../images/ANN_neuron.png}
 \caption{Model of artificial neuron}
 \label{ims:ANN_neuron}
@@ -241,10 +252,10 @@ The system works as follows:
 \end{itemize}
 The system yielded good results on simple structured artificial sequences however the system performed poorly on natural music\footnote{One critic described the resultant melodies as compositions only a mother could love}. Mozer described the system as lacking musical coherency \cite{mozer1994neural}. Furthermore the system performs poorly as the length of the pieces increases.
 
-Mozer stated the reason for failure is likely due to the \ac{RNN} not being able to track more distant events that build global structure \cite{mozer1994neural} however a \ac{LTSM} recurrent network is able to achieve this goal \cite{Eck2002}.
+Mozer stated the reason for failure is likely due to the \ac{RNN} not being able to track more distant events that build global structure \cite{mozer1994neural} however a \ac{LSTM} recurrent network is able to achieve this goal \cite{Eck2002}.
 \\
 \\
-In order to solve the problem of global structure Douglas and Jurgen attempted to use a \textbf{\ac{LTSM}} network to compose musical pieces \cite{Eck2002}. In this attempt the network was successfully able to learn a form a blues music and stay close to the relevant structure.
+In order to solve the problem of global structure Douglas and Jurgen attempted to use a \ac{LSTM} network to compose musical pieces \cite{Eck2002}. In this attempt the network was successfully able to learn a form a blues music and stay close to the relevant structure.
 The system used cross entropy as the error rate:
 \[
 E_i = -t_i \ln(y_i) - (1-t_i)\ln (1-y_i) \]
@@ -260,7 +271,7 @@ The topology of the network was arranged as follows:
 \end{enumerate}
 The underlaying chord structure was kept fixed.
 
-The results indicate that a \ac{LTSM} network is able to compose with both local- and global structure from a set of training data \cite{Eck2002}.
+The results indicate that a \ac{LSTM} network is able to compose with both local- and global structure from a set of training data \cite{Eck2002}.
 
 
 \subsection{Conclusion}
