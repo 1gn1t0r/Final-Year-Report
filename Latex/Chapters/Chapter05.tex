@@ -4,10 +4,10 @@
 % Detail design
 
 \chapter{Introduction}
-In this part the design of the application the end user will use will be discussed in detail. Topics covered include the final selection of algorithms in the application. The design of the user interface. A high level overview of the data structures used. The functionality and features of the application and finally some additional considerations will be reviewed.
+In this part the design of the end user application will be discussed in detail. Topics covered include the final selection of algorithms in the application, the design of the user interface, a high level overview of the data structures used, the functionality and features of the application and finally some additional considerations will be reviewed.
 
 \chapter{Technology, Platform and Programming Language}
-Some algorithms and features lend themselves to being implemented more easily in certain languages than other. Some implementations of the algorithms considered are notoriously difficult and external libraries were used in this. Thus a programming language needs to be chosen that does not constrain the functionality of the application. 
+Some algorithms and features lend themselves to being implemented more easily in certain languages than other. Some implementations of the algorithms considered are notoriously difficult and external libraries were used in this. Thus a programming language needs to be chosen that does not restrain the functionality of the application. 
 The three languages with most support include:
 \begin{enumerate}
 \item Python
@@ -15,9 +15,9 @@ The three languages with most support include:
 \item Java
 \item C++
 \end{enumerate}
-Ranked according to subjective estimates on the amount of programming time required, with C++ taking the most time.
+THese languages are ranked according to subjective estimates on the amount of programming time required, with C++ taking the most time.
 
-Machine learning libraries exist for all of the above mentioned languages. Python has poor support for rich user interfaces. Java is a good contender and is cross platform. Thus in order to make a final selection the consideration is made to the end user.  .NET languages fascillate the \ac{WPF} - a graphical system for rendering user interfaces, which will allow a rich user experience to be developed.
+Machine learning libraries exist for all of the above mentioned languages. Python has poor support for rich user interfaces. Java is a good contender and is cross platform. Thus in order to make a final selection the consideration is made to the end user.  .NET languages fascillate the use of \ac{WPF} - a graphical system for rendering user interfaces, which will allow a rich user experience to be developed.
 \\
 \\
 Winner: \emph{C\#}\footnote{The algorithmic code is cross platform and can be run through Mono, even though the graphical front end developed in \ac{WPF} cannot.}
@@ -45,7 +45,7 @@ The algorithms for consideration are:
 The selection of algorithms will be done by means of elimination. Algorithms that yielded sub minumum results will not be selected for inclusion into the end user application.
 
 \chapter{Features and Functionality}
-The main goal of the application is to generate melodies according to a certain styles. The user is to selection a certain category of music and the application will generate a musical piece in that style. The premise is to generate the melodies in a certain style using machine learning techniques that will use the data present in the corpus of MIDI files. 
+The main goal of the application is to generate melodies according to a certain styles. The user is to select a certain category of music and the application will generate a musical piece in that style. The premise is to generate the melodies in a certain style using machine learning techniques that will use the data present in the corpus of MIDI files. 
 
 Since training machine learning algorithms take up a lot of time it is not feasible to train the algorithm on the fly. Training will take place beforehand and the resulting data structure of the algorithm will be cached to a file. 
 For example a Neural Network will save its topology and weights to a file; this allows the application to load the file, present inputs to the neural network and output a result without spending time learning the optimal weights for the network.
