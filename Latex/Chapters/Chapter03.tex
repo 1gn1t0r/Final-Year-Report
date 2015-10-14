@@ -98,5 +98,36 @@ Figure \ref{ims:oppflow} shows how the operator interacts with the application. 
 
 For this application, the operator selects the style of music to be composed; instructs the application to compose the music according to the selected style and then to instruct the application to either play back the piece of generated music or save it to storage.
 
+\begin{figure}
+\centerline{\includegraphics[width=350px]{../images/op_use_case.pdf}}
+\caption{Application interaction use case}
+\label{ims:opusecase}
+\end{figure}
+
+Figure \ref{ims:opusecase} shows a more in-depth interaction between the user and the application. 
+The application allows the user to:
+\begin{enumerate}
+\item Select the style for composition
+\item Select the algorithm to be used for composition
+\item Load a previously generated melody
+\item Save a generated melody
+\end{enumerate}
+
+Some considerations need to be taken to ensure that the interface to the application is as user-friendly as possible. 
+
+\begin{enumerate}
+\item The design of the interface should be clean and minimilistic. 
+\item Clear instructions should be given to the user when there is a possibility of ambiguity.
+\item Images and icons should be used as visual aids for buttons or to indicate the function of a feature
+\item Seperate functional features should be seperated in the interface. The following areas should have seperate section in the interface
+	\begin{itemize}
+	\item Playback, saving and loading
+	\item Generation of melodies
+	\item Optional options and parameters for algorithms
+	\end{itemize} 
+\end{enumerate}
+
+Functionally, it makes sense for the user to choose the filename and path of the melody to be saved. Similarly the user should be able to select which previously generated melody should be loaded.
+
 \chapter{Conclusion}
 In order to solve the problem of generating music algorithmically the task was broken down into its functional architecture. From this each functional unit and its interaction is made apparent. The core component of this project is the algorithm which is used to compose music

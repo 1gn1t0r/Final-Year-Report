@@ -182,6 +182,15 @@ Figure \ref{ims:markov_chain_example} is an example of a Markov Chain. For each 
 
 A Markov Chain can have a order. For a simple note such as figure \ref{ims:markov_chain_example} if the current note is B then the note $A$ has a $30\%$ chance of being next. This is a first order Markov Chain.  A more complex chain of order 2 could have the current state being composed of two notes. Thus the next note is dependent on the previous two notes. A N-th order Markov chain can be represented by a transition matrix, which corresponds to a N+1 dimension probability table.
 
+For a Markov Chain of order $m$ the following holds:
+\[
+\Pr(X_n=x_n\mid X_{n-1}=x_{n-1}, X_{n-2}=x_{n-2}, \dots , X_1=x_1)
+\]
+\[\quad = \Pr(X_n=x_n\mid X_{n-1}=x_{n-1}, X_{n-2}=x_{n-2}, \dots, X_{n-m}=x_{n-m})
+\]
+For $n > m$
+
+
 Markov Chains must be derived from existing music and generate output of the same style as the input. This reduces the compositional value and novelty however it suits the purpose of generating music in a specific style \cite{Jarvelainen2000}.
 
 
