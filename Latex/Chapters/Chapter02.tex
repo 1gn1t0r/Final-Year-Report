@@ -151,6 +151,17 @@ Tree based representations do not have a fixed size, as is commonly found in lin
 \chapter{Music composition algorithms} \label{chap:comp_algo}
 
 \section{Hidden Markov Models} \label{sec:hmm_backround}
+
+\begin{figure}[ht!]
+\center
+\includegraphics[width=250px]{../images/HiddenMarkovModel.pdf}
+\caption{Example of a Hidden Markov Model}
+\label{ims:hmm_example}
+\end{figure}
+
+
+
+
 \ac{HMM} are stochastic methods that are used to model sequential data such as speech and gesture recognition.
 %TODO insert citation
 Under the Markov property the next observation is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. When a event is generated from a state, the model moves into a new state based on its transition probabilities. The term hidden is commonly used to indicate that many different state sequences can generate the same observed sequence of events.
