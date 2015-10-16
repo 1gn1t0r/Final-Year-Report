@@ -97,16 +97,18 @@ For the final end-user application only a subset of algorithms will be chosen. I
 \begin{table}[htbp]
   \centering
   \caption{Trade-off study for algorithms for melody generation}
-    \begin{tabular}{rrrrrr}
+    \begin{tabular}{rr|rrrr}
     \toprule
     \multicolumn{6}{c}{Melody generation} \\
     \midrule
           & Weight & GA    & FFANN & MC    & HMM \\
+    \midrule 
     Training time & 0.3   & 10    & 4     & 8     & 5 \\
     Generation time & 0.6   & 4     & 7     & 8     & 7 \\
     Flexibility & 0.6   & 10    & 7     & 6     & 6 \\
     Pleasantness & 0.7   & 5     & 4     & 7     & 5 \\
           &       &       &       &       &  \\
+          \bottomrule
     Total & 2.2   & 14.9  & 12.4  & 15.7  & 12.8 \\
     \bottomrule
     \end{tabular}%
@@ -119,16 +121,18 @@ Table \ref{tab:tomelgen} shows the trade-off study for algorithms for melody gen
 \begin{table}[htbp]
   \centering
   \caption{Trade off study for algorithms for accompaniment generation}
-    \begin{tabular}{rrrrrr}
+    \begin{tabular}{rr|rrrr}
     \toprule
-    \multicolumn{5}{c}{Accompaniment generation} &  \\
+    \multicolumn{6}{c}{Accompaniment generation} \\
     \midrule
           & Weight & HMM   & FFANN & MM    & LSTM \\
+    \midrule  
     Training time & 0.3   & 6     & 4     & 8     & 3 \\
     Generation time & 0.6   & 7     & 7     & 8     & 6 \\
     Flexibility & 0.6   & 6     & 7     & 6     & 5 \\
     Pleasantness & 0.7   & 3     & 5     & 6     & 3 \\
           &       &       &       &       &  \\
+          \bottomrule
     Total & 2.2   & 11.7  & 13.1  & 15    & 9.6 \\
     \bottomrule
     \end{tabular}%
@@ -141,9 +145,9 @@ Table \ref{tab:toaccompgen} indiactes the trade-off study for algorithms for acc
 \begin{table}[htbp]
   \centering
   \caption{Comparison of frequency metric time and pleasantness}
-    \begin{tabular}{rrr}
+    \begin{tabular}{r|rr}
     \toprule
-          & Time(ms) & Pleasantness \\
+          & Time (ms) & Pleasantness \\
     \midrule
     Chromatic Tone & 8992  & 4 \\
     Chromatic Tone Distance & 11017 & 5 \\
@@ -169,7 +173,7 @@ From the trade-off study the selected algorithms were chosen.
 In summary, the selected algorithms for the end-user application were:
 \begin{enumerate}
 \item Genetic Algorithms for melody generation.
-\item Markov Chains for melody generation.
+\item Markov Chains for melody generation (with percussion support).
 \item Feed Forward Artificial Neural Network for accompaniment generation.
 \item Markov Model for accompaniment generation.
 \end{enumerate}
