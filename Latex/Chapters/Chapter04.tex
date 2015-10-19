@@ -660,3 +660,67 @@ Accompaniment generation with a Markov Model produces better results than with a
 \end{figure}
 
 
+\chapter{Melody generation with Stochastic sampling}
+\section{Introduction}
+The idea here is to generate a melody from a extant music piece and modifying it to create a new melody. Given some model $\lambda$ we modify some piece $p$ into a new piece $p'$ such that $\Pr(p'|\lambda) > P(p|\lambda)$.
+In order to modify the piece various sampling methods can be used. The idea is to replace a note of a piece with some other note in an attempt to increase the probability that the new piece come from the model. 
+
+\section{Methodology}
+The model to be used will be a simple first order Markov chain. The model is able to evaluate the probability that a music piece or sequence of notes originated from it, i.e. it can calculate $\Pr(p|\lambda)$. The search space for new notes is the set of all notes contained within the Markov chain.
+The sampling to be performed is similar to Metropolis sampling. A random note is chosen from piece $p$ and replaced with another note to produce $p'$, the new note is kept if $Pr(p'|\lambda) \geq Pr(p|\lambda)$. The new piece will then be used in subsequent iterations.
+
+\begin{algorithm}
+ \KwData{Dataset that accords to a certain musical style}
+ \KwResult{Melody Sequence}
+ model = MarkovChain()\;
+ Add all melody sequences in the dataset to the Markov Chain\;
+ Let MaxIter be the maximum number of iterations\;
+ iter = 0\;
+ Let piece be a random melody sequence from the dataset\;
+ \While{iter < MaxIter}{
+ 	 iter = iter + 1\;
+ 	 random\_index = Random number between 0 and number of notes in piece\;
+ 	 Let new\_note be a random note in the search space\;
+ 	 new\_piece = piece.ReplaceNote(random\_index, new\_note)\;
+	 \If{ model.Probability(\text{new\_piece}) >= model.Probability(\text{piece})}{
+ 	 	piece = new\_piece\;
+ 	 }
+    }
+ Return piece\;
+ \caption{Pseudocode for generating a melody using Stochastic Sampling}
+\end{algorithm}
+
+\section{Results}
+\begin{figure}[h!]
+\centerline{\includegraphics[width=300px]{../images/swr_in.pdf}}
+\caption{Randomly selected input melody 1}
+\label{ims:swr_in}
+\end{figure}
+
+\begin{figure}[h!]
+\centerline{\includegraphics[width=300px]{../images/swr_out.pdf}}
+\caption{Output melody using the stochastic sampling on melody 1}
+\label{ims:swr_out}
+\end{figure}
+
+\begin{figure}[h!]
+\centerline{\includegraphics[width=300px]{../images/swr_in2.pdf}}
+\caption{Randomly selected input melody 2}
+\label{ims:swr_in2}
+\end{figure}
+
+\begin{figure}[h!]
+\centerline{\includegraphics[width=300px]{../images/swr_out2.pdf}}
+\caption{Output melody using the stochastic sampling on melody 2}
+\label{ims:swr_out2}
+\end{figure}
+
+Figure \ref{ims:swr_in} shows the randomly selected melody used to generate the melody in figure \ref{ims:swr_out} using stochastic sampling with replacement. The number of iterations for the first melodies were $100$.
+Using a larger number of iterations of $200$ more variety and change can be seen. Figure \ref{ims:swr_in2} shows the randomly selected melody used to generate the melody in figure \ref{ims:swr_out2} using the larger number of iterations.
+
+
+\section{Conclusion}
+The problem with this method is that it might not seem creative, even though it can produce interesting pieces. Another problem is that it might fall in a local minimum, where further replacements cannot improve the probability of the piece. 
+Overall the method produced pleasing results and indicates that modifications to existing pieces can be a efficient way to generate new pieces in a certain style.
+
+In order to improve this method a different of more accurate model could be used other than the first order Markov chain. A \ac{HMM} might yield better results.

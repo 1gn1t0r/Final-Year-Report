@@ -59,6 +59,51 @@ The complete derivation of the back-propogation algorithm for feed forward artif
 All tests were run with the specifications as given in table \ref{tab:systemspecs}. The development environment specifications are given in figure \ref{tab:languagespecs}.
 
 
+\chapter{Source Code}
+Listed here is the framework used to generate the results mentioned in this project.
+\graffito{Code used to algorithmically compose music}
+
+\section{DotNetMusic}
+DotNetMusic contains the core music/\ac{MIDI} functionality and includes:
+\begin{itemize}
+\item Reading and Writing to \ac{MIDI} files using NAudio
+\item Core data structures for music representation
+\item Core playback functionality
+\item \ac{WPF} control for displaying notes on a music sheet
+\item Saving and loading of core music data structures using Google protocol buffers
+\end{itemize}
+DotNetMusic can be found at \href{https://github.com/stefan-j/DotNetMusic}{github.com/stefan-j/DotNetMusic}
+
+\section{DotNetLearn}
+Some additional machine learning implementation and useful math features.
+\begin{itemize}
+\item Implementation of Markov Model
+\item Codification of data
+\item Other statistical features
+\end{itemize}
+DotNetLearn can be found at \href{https://github.com/stefan-j/DotNetLearn}{github.com/stefan-j/DotNetLearn}
+
+\section{GeneticMIDI}
+GeneticMIDI contains the core functionality for algorithmically generating music.
+\begin{itemize}
+\item Generators for producing music algorithmically using Markov Models, Markov Chains, Neural Networks.
+\item Genetic Algorithms (\ac{GP} tree structures)
+\item Fitness functions for Genetic Algorithms including \ac{NCD}, Cosine Similarity (and frequency metrics)
+\item Random generation of notes
+\item The developed front-end visualizer application for producing music in a user-friendly manner
+\end{itemize}
+
+Libraries used include:
+\begin{itemize}
+\item A-Forge - For the neural networks and evolution of \acp{GA}.
+\item Accord - For the \ac{HMM} and neural network training.
+\item NAudio - For reading, writing and playing of \ac{MIDI} data. 
+\item IKVM - For the \ac{LTSM} network.
+\item Proto.Net - .Net implementation of Google protocol buffers for saving of data structures
+\end{itemize}
+
+GeneticMIDI can be found at \href{https://github.com/stefan-j/GeneticMIDI}{github.com/stefan-j/GeneticMIDI}
+
 \chapter{Planning}
 
 \graffito{Project breakdown and schedule}
