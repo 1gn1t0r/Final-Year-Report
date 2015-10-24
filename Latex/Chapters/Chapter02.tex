@@ -169,12 +169,12 @@ Under the Markov property the next observation is only dependent on the current 
 
 The \ac{HMM} is formally defined by:
 \[\lambda = (A,B,\pi) \]
-where A is the transition matrix, B the emision matrix and $\pi$ the initial state vector. Let $S$ be the set of states, $V$ the set of observations, $Q$ a fixed state sequence of length $T$ and $O$ a corresponding observation sequence.
+where A is the transition matrix, B the emission matrix and $\pi$ the initial state vector. Let $S$ be the set of states, $V$ the set of observations, $Q$ a fixed state sequence of length $T$ and $O$ a corresponding observation sequence.
 The transition probabilities are then given by:
 \[ A = P(q_t = s_j | q_{t-1} = s_i) \]
 and the emission probabilities are given by:
 \[ B = P(o_t = v_k | q_t = s_i) \]
-and the initial state probilities by:
+and the initial state probabilities by:
 \[ \pi = P(q_1 = s_i) \]
 
 Given a sequence of observations we want to compute the probability of an observation sequence given the model.
@@ -270,7 +270,7 @@ Figure \ref{ims:ANN_FF} shows a multilayer ANN in feed-forward topology. The fir
 Neurons have a number of inputs which are summed into an activation function. The activation function provides the output of a neuron.
 In figure \ref{ims:ANN_neuron} we have
 \[ o_j = \varphi\left(\sum^{n}_{i=1} x_i w_{ij}\right)  \]
-A common activation function is the continous sigmoid function given by
+A common activation function is the continuous sigmoid function given by
 \begin{equation} \varphi(t) = \sigma(t) = \frac{1}{1+e^{-\beta t}}  \label{eq:sigmoid}\end{equation}
 where $\beta$ is the slope parameter.
 The derivative of the sigmoid function is easy to obtain and is given by:
@@ -283,7 +283,7 @@ Thus for the output neurons we have
 \begin{equation} E(\vec{w}) = \frac{1}{2} \sum_{d \in D}(t_d - \sigma_d)^2 \label{eq:error} \end{equation}\
 where $D$ is the set of training examples and $t_d$ is the target output for training example $d$ and $o_d$ is the output of the artificial neuron for training example $d$
 We need to minimize equation \ref{eq:error}.
-Obtaining the deriviative of $E$ with respect to $w_i$ yields:
+Obtaining the derivative of $E$ with respect to $w_i$ yields:
 \[ \frac{\partial E}{\partial w_i} = \sum_{d\in D}(t_d - o_d)(-x_id) \]
 where $x_{id}$ is the input for component $x_i$
 
@@ -295,7 +295,7 @@ For a multi layer network with multiple output units the back propagation algori
 The error needs to be summed over all the network output units
 \[E(\vec{w}) = \frac{1}{2} \sum_{d \in D} \sum_{k \in \text{outputs}} (t_{kd} - \sigma_{kd})^2 \]
 
-The backpropagation algorithm to determine the weights of a feed-forward neural network is given in appendix \ref{chap:app_algo}
+The back-propagation algorithm to determine the weights of a feed-forward neural network is given in appendix \ref{chap:app_algo}
 
 
 \subsection{Composition}
@@ -473,7 +473,7 @@ In this section we will investigate methods of music classification. If some alg
 
 \section{Normalized Compression Distance} \label{sec:class_ncd}
 \subsection{Background}
-The Kolmogorov complexity of piece of text is the measure of the computable resources needed to specify the text. The complexity of a string is the length of the shortest possible description of the string in a fixed universal description langauge \cite{Kolmogorov1998387}.
+The Kolmogorov complexity of piece of text is the measure of the computable resources needed to specify the text. The complexity of a string is the length of the shortest possible description of the string in a fixed universal description language \cite{Kolmogorov1998387}.
 
 The information distance between two string $x$ and $y$ is defined as the length of the shortest program $p$ that can compute $x$ from $y$ and $y$ from $x$
 The length of $p$ can be expressed using Kolmogorov complexity \cite{681318}:
@@ -557,7 +557,7 @@ Learned fitness functions are sensitive to input data and the selection of featu
 \section{Zipf's law} \label{sec:zipfs_fitness}
 Zipf's law states that the frequency of an event is inversely proportional to its statistical rank, that is:
 \[ f \propto r^{-a} \]
-where $f$ is the frequency of occurence of a particular event and $r$ is the statistical rank. $a$ is close to $1$.
+where $f$ is the frequency of occurrence of a particular event and $r$ is the statistical rank. $a$ is close to $1$.
 Zipf's law can also be stated as:
 \[ P(f) \approx \frac{1}{f^n}\]
 where $P(f)$ denotes the probability of an event of rank $f$ and $n$ is close to $1$
@@ -627,7 +627,7 @@ Metrics included for the fitness function were:
 \item Rhythmic interval
 \item Rhythmic bigram
 \end{itemize}
-Jensen concluded that the results obtained by the cosine simalirity fitness function were more pleasant than those obtained by Zipf's law as Zipf's law rates music on scaling properties only \cite{Dostal2013}.
+Jensen concluded that the results obtained by the cosine similarity fitness function were more pleasant than those obtained by Zipf's law as Zipf's law rates music on scaling properties only \cite{Dostal2013}.
 
 %********************************************************************************************************
 

@@ -387,7 +387,7 @@ Figure \ref{ims:genetic_mel_ncd} indicates an excerpt of a melody produced with 
 
 The melody produced in figure \ref{ims:genetic_mel_ctdrb} using the cosine similarity fitness function was rather pleasant and the rhythmic bigram and chromatic tone duration -frequency metrics produce pleasant melodies.
 
-The melody produced in figure \ref{ims:genetic_mel_mall} used the cosine similarity fitness function using all the frequency metrics. At times the melody is pleasant however off-sounding or out of key notes are a common occurence. The melodies also dont have structure. This indicates that some of the frequency metrics either don't work well in conjunction with each other or some frequency metrics have a negative effect on the pleasantness of melodies. 
+The melody produced in figure \ref{ims:genetic_mel_mall} used the cosine similarity fitness function using all the frequency metrics. At times the melody is pleasant however off-sounding or out of key notes are a common occurrence. The melodies also don't have structure. This indicates that some of the frequency metrics either don't work well in conjunction with each other or some frequency metrics have a negative effect on the pleasantness of melodies. 
 
 The following frequency metrics produced good or pleasant results:
 \begin{enumerate}
@@ -416,9 +416,9 @@ The results of different fitness functions were compared. \ac{NCD} performed the
 
 \chapter{Melody generation with a Hidden Markov Model}
 \section{Introduction}
-An attempt was made to use a hidden markov model to generate melody sequences.
+An attempt was made to use a hidden Markov model to generate melody sequences.
 
-A \ac{HMM} is a statistical Markov model where the assumption is made that the system being modeled  is a Markov process with hidden states. See section \ref{sec:hmm_backround} for more information on hidden markov models for melody generation.
+A \ac{HMM} is a statistical Markov model where the assumption is made that the system being modeled  is a Markov process with hidden states. See section \ref{sec:hmm_backround} for more information on Hidden Markov Models for melody generation.
 
 \section{Methodology}
 In order to train the \ac{HMM}, that is to re-estimate the \ac{HMM} parameters the unsupervised algorithm of Baum-Welch was used. The update rules are given in section \ref{sec:hmm_backround}. However the regular update rules of Baum-Welch only cover an update for a single observation.
@@ -609,7 +609,7 @@ Training \ac{LSTM} and other recurrent neural networks is slow, as such the weig
 \subsection{Results}
 Since the network requires an input melody track to construct an accompaniment track it does not face the same problems such as lack of structure which most other non-recurrent neural networks do.
 
-The output accompaniment can sometimes be pleasant, however a beter timing relation is required between the input and output notes. Most of the produced melodies are repetitive, see figure \ref{ims:lstmaccomp}. The network does not produce an accompaniment which is in harmony or in phase with the main melody track.
+The output accompaniment can sometimes be pleasant, however a better timing relation is required between the input and output notes. Most of the produced melodies are repetitive, see figure \ref{ims:lstmaccomp}. The network does not produce an accompaniment which is in harmony or in phase with the main melody track.
 
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/lstm_accomp.pdf}}
@@ -645,7 +645,7 @@ The data for the network consists of the melody track and the accompaniment trac
 
 \chapter{Accompaniment generation with a Markov Model}
 \section{Introduction}
-For this experiment an attempt is made to produce an accompaniment based on the frequency of certain notes occuring in the accompaniment track given the melody track.
+For this experiment an attempt is made to produce an accompaniment based on the frequency of certain notes occurring in the accompaniment track given the melody track.
 
 More specifically, for each note in the melody track the odds are calculated for each possible accompaniment note that may occur at that time. Given an input melody, for each note in that melody an accompaniment note is produced according to the calculated probabilities.
 
