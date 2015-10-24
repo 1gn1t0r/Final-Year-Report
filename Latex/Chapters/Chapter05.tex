@@ -9,7 +9,7 @@ In this part the design of the end user application will be discussed in detail.
 \chapter{Technology, Platform and Programming Language}
 \section{Introduction}
 Some algorithms and features lend themselves to being implemented more easily in certain languages than other. Some implementations of the algorithms considered are notoriously difficult and external libraries were used in this. Thus a programming language needs to be chosen that does not restrain the functionality of the application. 
-The three languages with most support include:
+The four languages with most support include:
 \begin{enumerate}
 \item Python
 \item C\# (and other .NET languages)
@@ -23,7 +23,7 @@ Machine learning libraries exist for all of the above mentioned languages. Pytho
 
 \section{Trade off study}
 
-Thus in order to make a final selection a trade off study was conducted. Additional factors included in the tradeoff study were the expressive and amount of features in a language and the cross platform compatibility. These features have a lower weighing.
+Thus in order to make a final selection a trade off study was conducted. Additional factors included in the tradeoff study were the expressiveness and amount of features in a language and the cross platform compatibility. These features have a lower weighing.
 Consideration is made to the end user and the user interface support is given the highest weighing.  
 
 Thus the factors considered are:
@@ -213,6 +213,9 @@ To summarize, the application will:
 \end{enumerate}
 
 \chapter{Graphical user interface}
+
+\section{Introduction}
+
 In this chapter the design of the graphical user interface is presented, along with the features and functionality of the application.
 
 As mentioned above the user interface is to have the following features
@@ -225,17 +228,32 @@ As mentioned above the user interface is to have the following features
 
 The user interface will be developed using \ac{WPF} and \ac{XAML}.
 
+\section{Playback}
+
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/ui_play.pdf}}
 \caption{User interface for playback functionality}
 \label{ims:uiplay}
 \end{figure}
 
+
+
+Figure \ref{ims:uiplay} indicates the starting interface of the application. This interface provides controls for playback functionality, is responsible for displaying a visual of the song being currently played, provides saving and loading functionality and allows the user to randomize the current song using the parameters set in the compose view.
+
+\section{Composition}
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/ui_compose.pdf}}
 \caption{User interface for composition functionality}
 \label{ims:uicompose}
 \end{figure}
+
+
+Figure \ref{ims:uicompose} allows the user to select the music style or category for music to be generated in. A track is a sequence of notes played in a particular instrument. A user is able to add new tracks using the provided button, which takes them to a new window as in figure \ref{ims:uitrack}. If a user double clicks on a specific track the frequency metrics of the track are shown as in figure \ref{ims:uimetrics}.
+
+
+\section{Track generation}
+
+Figure \ref{ims:uitrack} allows the user to generate a track using a specific technique. This interface allows the user to select the type of technique for track generation and also displayes the progress. Once a track is generated it can be added to the list of tracks as in figure \ref{ims:uicompose}.
 
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/ui_track.pdf}}
@@ -243,28 +261,53 @@ The user interface will be developed using \ac{WPF} and \ac{XAML}.
 \label{ims:uitrack}
 \end{figure}
 
+
+
+\section{Statistics}
+
+Figure \ref{ims:uimetrics} displays a list of frequency metrics about the track selected. An example metric is the frequency of musical intervals within a melody ($\text{mi} = |p_i - p_{i-1}|$, where $p_i$ is the pitch at index $i$); more information about frequency metrics can be found in section \label{chap:metrics}.
+
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/ui_metrics.pdf}}
 \caption{User interface for displaying metrics of a melody}
 \label{ims:uimetrics}
 \end{figure}
 
-Figure \ref{ims:uiplay} indicates the starting interface of the application. This interface provides controls for playback functionality, is responsible for displaying a visual of the song being currently played, provides saving and loading functionality and allows the user to randomize the current song using the parameters set in the compose view.
-
-Figure \ref{ims:uicompose} allows the user to select the music style or category for music to be generated in. A track is a sequence of notes played in a particular instrument. A user is able to add new tracks using the provided button, which takes them to a new window as in figure \ref{ims:uitrack}. If a user double clicks on a specific track the frequency metrics of the track are shown as in figure \ref{ims:uimetrics}.
-
-Figure \ref{ims:uitrack} allows the user to generate a track using a specific technique. This interface allows the user to select the type of technique for track generation and also displayes the progress. Once a track is generated it can be added to the list of tracks as in figure \ref{ims:uicompose}.
-
-Figure \ref{ims:uimetrics} displays a list of frequency metrics about the track selected. An example metric is the frequency of musical intervals within a melody ($\text{mi} = |p_i - p_{i-1}|$, where $p_i$ is the pitch at index $i$); more information about frequency metrics can be found in section \label{chap:metrics}.
  
-The visualization blocks in figures \ref{ims:uicompose} and \ref{ims:uitrack} will be a simple visual displaying the notes over time. A simplified music sheet representation will be used, something in the vein of figure \ref{ims:uiharrymusicsheet} (though simpler).
+\section{Visualization}
+The visualization blocks in figures \ref{ims:uicompose} and \ref{ims:uitrack} will be a simple visual displaying the notes over time. 
+
+%A simplified music sheet representation will be used, something in the vein of figure \ref{ims:uiharrymusicsheet}.
 
 \begin{figure}
-\centerline{\includegraphics[width=400px]{../images/ui_visualization.pdf}}
-\caption{Visualization of notes}
-\label{ims:uiharrymusicsheet}
+\centerline{\includegraphics[width=400px]{../images/alphatab_example.png}}
+\caption{Example of a music sheet rendered with alphatab}
+\label{ims:alphatab}
 \end{figure}
 
+AlphaTab is a cross platform music notation and guitar tablature rendering library. It is the only music notation library available on C\# which will fit the need for visualization of notes required.
+Figure \ref{ims:alphatab} indicates a music sheet rendered with Alphatab. Note that Alphatab is geared towards guitarists and provides a lot more information which is unwanted for a simple visualization. 
+
+Since the library is open source it will be modified to suit our needs. Guitar tabs, timing information, lyrics and any other excessive information will be removed. In addition it is necessary to show which note is currently played when a melody is played. The active note will be displayed in red.
+
+\begin{figure}
+\centerline{\includegraphics[width=400px]{../images/music_sheet_visualization.png}}
+\caption{Desired notes visualization}
+\label{ims:uiharrynotesvisualization}
+\end{figure}
+
+Figure \ref{ims:uiharrynotesvisualization} displays the designed simple notes visualization required for the application. Alphatab will be modified in order to produce a result similar to this.
+
+
+%\begin{figure}
+%\centerline{\includegraphics[width=400px]{../images/ui_visualization.pdf}}
+%\caption{Visualization of notes}
+%\label{ims:uiharrymusicsheet}
+%\end{figure}
+
+
+
+\section{State control}
 
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/ui_control_blockdiagram.pdf}}
@@ -272,7 +315,8 @@ The visualization blocks in figures \ref{ims:uicompose} and \ref{ims:uitrack} wi
 \label{ims:uiflow}
 \end{figure}
 
-Figure \ref{ims:uiflow} shows the state diagram of the user interface.
+Figure \ref{ims:uiflow} shows the state diagram of the user interface. 
+From the figure it can be seen that the Playback UI controls playback of a single composition. From the composition UI the necessary tools and functionality can be access to create new melodies.
 
 
 % Functionality and features

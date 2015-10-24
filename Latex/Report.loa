@@ -13,15 +13,15 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {1}{\ignorespaces Markov Chain for a particular instrument\relax }}{60}{algocf.1}
+\contentsline {algocf}{\numberline {1}{\ignorespaces Markov Chain for a particular instrument\relax }}{63}{algocf.1}
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {2}{\ignorespaces Training set for LSTM network\relax }}{64}{algocf.2}
+\contentsline {algocf}{\numberline {2}{\ignorespaces Training set for LSTM network\relax }}{66}{algocf.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {3}{\ignorespaces Constructing frequency table for model\relax }}{67}{algocf.3}
-\contentsline {algocf}{\numberline {4}{\ignorespaces Obtaining accompaniment melody\relax }}{68}{algocf.4}
+\contentsline {algocf}{\numberline {3}{\ignorespaces Constructing frequency table for model\relax }}{69}{algocf.3}
+\contentsline {algocf}{\numberline {4}{\ignorespaces Obtaining accompaniment melody\relax }}{70}{algocf.4}
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {5}{\ignorespaces Pseudocode for generating a melody using Stochastic Sampling\relax }}{70}{algocf.5}
+\contentsline {algocf}{\numberline {5}{\ignorespaces Pseudocode for generating a melody using Stochastic Sampling\relax }}{71}{algocf.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

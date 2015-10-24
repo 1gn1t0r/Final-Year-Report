@@ -22,7 +22,7 @@ In this section the project will be broken down into discrete functional compone
 Figure \ref{ims:oppflow} shows the interaction of the user with the application. 
 The user interacts with the application and selects a certain style of music to be composed. The application generates the music according to a certain algorithm and plays back the generated piece. 
 \\\\
-Figure \ref{ims:conceptuserinterface} indicates a conceptual user interface with the primary elements. A user is able to select a certain style of music for composition. Once the piece is generated the user is able to save the music to a \ac{MIDI} file.
+A user is able to select a certain style of music for composition. Once the piece is generated the user is able to save the music to a \ac{MIDI} file.
 \\\\
 The core functionality of the application resides in the algorithm that is responsible for composing a piece of music.
 
@@ -47,7 +47,6 @@ The algorithm will utilize a subset of the library (a category) as input.
 The user interface is the front end of the application. The operator interacts with this functional unit in order to instruct the application what to do.
 
 The user interface should be designed in a user-friendly manner in order to accommodate the operator.
-A conceptual user interface is shown in figure \ref{ims:conceptuserinterface}. 
 
 This user interface allows the user to select a certain style, instruct the algorithm to compose music and to save or play back a piece of music once it is composed.
 
@@ -57,18 +56,18 @@ The algorithm is the central part of this project. The algorithm converts the in
 The algorithm will utilize a category of \ac{MIDI} files from the \ac{MIDI} library in order to compose a new piece of music not in the \ac{MIDI} library.
 
 The output piece of music will represent the style of music that was used as input.
-The possible types of algorithms were discussed in section \label{chap:comp_algo}
+
+Various machine learning algorithms are investigated. The results of the investigation is covered in part \ref{part:algo}.
 
 \subsection{Functional Unit 5 - Storage}
 This unit is responsible for storing the output \ac{MIDI} from the algorithm into a \ac{MIDI} file.
 
 \subsection{Functional Unit 6 - Playback}
-This unit is responsible for playing back the output \ac{MIDI} from the algorithm through an audio output device
+This unit is responsible for playing back the output \ac{MIDI} from the algorithm through an audio output device.
 
 \section{Interfaces}
 The interfaces indicate the interaction between different functional units.
 The interfaces have the following functions:
-\\Interface:
 \begin{enumerate}
 \item Interface between the user and the user interface. This input would be from a input peripheral device.
 \item Interface between the user interface and the algorithm. The interface calls the algorithm with the parameters supplied by the user such as when to start and what type of style was selected
@@ -77,6 +76,7 @@ The interfaces have the following functions:
 \item Interface between the algorithm and playback. This interface converts the output from the algorithm into a format that is ready for playback through the playback functional unit.
 \item Interface between the playback and the music. This represents the audio output device and it's workings.
 \end{enumerate}
+
 
 \chapter{Operational Flow}
 
@@ -88,13 +88,7 @@ The operational flow indicates the interaction between the operator and the appl
 \label{ims:oppflow}
 \end{figure}
 
-\begin{figure}[ht]
-\centerline{\includegraphics[width=150px]{../images/user_interface.pdf}}
-\caption{Conceptual user interface}
-\label{ims:conceptuserinterface}
-\end{figure}
-
-Figure \ref{ims:oppflow} shows how the operator interacts with the application. Figure \ref{ims:conceptuserinterface} shows a conceptual user interface with which the operator would interact.
+Figure \ref{ims:oppflow} shows how the operator interacts with the application. 
 
 For this application, the operator selects the style of music to be composed; instructs the application to compose the music according to the selected style and then to instruct the application to either play back the piece of generated music or save it to storage.
 

@@ -22,7 +22,7 @@ These categories are not the final list of styles that will be included into the
 
 \chapter{Representation}
 This section discusses how music is represented internally in the system and how the data structures are designed. 
-Proper data structures are extremely important for good algorithms \footnote{Bad programmers worry about the code. Good programmers worry about data structures and their relationships. Linus Torvalds}.
+Proper data structures are extremely important for good algorithms \footnote{Bad programmers worry about the code. Good programmers worry about data structures and their relationships \mytilde Linus Torvalds}.
 
 \section{Assumptions and simplifications}
 For this system our model of music is simplified and we do not make provisions for chords. Melodies are monophonic and are simply a list of notes of their durations.
@@ -421,17 +421,42 @@ An attempt was made to use a hidden markov model to generate melody sequences.
 A \ac{HMM} is a statistical Markov model where the assumption is made that the system being modeled  is a Markov process with hidden states. See section \ref{sec:hmm_backround} for more information on hidden markov models for melody generation.
 
 \section{Methodology}
-For this experiment a simple \ac{HMM} is constructed with a forward structure. All uniques notes are linked with a unique integer id with the use of a dictionary. The amount of states of the \ac{HMM} was constrained to $100$. Notes were constrained to only be in the 5th Octave, this helps reduce the unique number of symbols. In addition the duration of all notes were restricted to be in \{tn, sn, en, qn, hn, wn \} where wn is a whole note, qn is a quarter note and so on.
+In order to train the \ac{HMM}, that is to re-estimate the \ac{HMM} parameters the unsupervised algorithm of Baum-Welch was used. The update rules are given in section \ref{sec:hmm_backround}. However the regular update rules of Baum-Welch only cover an update for a single observation.
 
-In order to train the \ac{HMM}, that is to find the emission and transmission matrix K-Means clustering was used.
-K-Means clustering partitions $n$ observations into $k$ clusters into which each observation gets assigned to the cluster with the nearest mean.
+In order to operate on multiple observations the independence assumption was made, that is:
+\[ P(\emph{O} | \lambda) = \prod_{k=1}^K P(O^{(k)} | \lambda) \]
+For which the update rules according to Levinson are:
+\begin{enumerate}
+\item State transition:
+\[ a'_{mn} = \frac{\sum^K_{k=1} \sum^{T_k -1 }_{t=1} \xi^{(k)}_t (m,n)}{\sum^K_{k=1} \sum^{T_k-1}_{t=1} \gamma_t^{(k)}(m)} \]
+
+\item Observation emission:
+\[ b'_n (m) = \frac{\sum^K_{k=1} \sum^{T_k -1 }_{t=1m o_t^{(k)} = v_m} \gamma^{(k)}_t (n)}{\sum^K_{k=1} \sum^{T_k-1}_{t=1} \gamma_t^{(k)}(n)} \]
+
+\item Initial state:
+\[ \pi'_n = \frac{1}{K} \sum^K_{k=1} \gamma_1^{(k)}(n)  \]
+
+\end{enumerate}
+
+Special care was taken to to avoid underflows. All probabilities were stored as log probabilities.
+
+
+For this experiment a simple first order \ac{HMM} is constructed with a ergodic structure. In addition the following constraints were made:
+\begin{itemize}
+\item The amount of states of the \ac{HMM} was constrained to $100$
+\item The duration of all notes were restricted to be in \{tn, sn, en, qn, hn, wn \} where wn is a whole note, qn is a quarter note and so on. 
+\end{itemize}
+
+All uniques notes were linked with a unique integer id with the use of a dictionary. 
+
+In order to test the model it was trained on datasets of different styles. No distinction was made between different instruments as was the case with the Markov Chain experiment.
+The melody sequences of each composition was used as the input data for the modified Baum-Welch training algorithm. The number of iterations was set to $100$.
+
 
 \section{Results}
-%TODO Kmeans time to learn
-The training time increases greatly as the number of symbols increases and thus it is necessary to constrain the number of symbols. The Viterbi algoritmh is expensive and requires time proportional to the product of the number of states and number of edges in the model, other algorithms are even slower.
-Overall the \ac{HMM} produced melodies without structure.
+Since the model is of first order it produces melodies without overall structure. This is to be expected.
 
-\begin{figure}
+\begin{figure}[h!]
 \centerline{\includegraphics[width=400px]{../images/hmm_melody_generated.pdf}}
 \caption{Melody generated with a \ac{HMM}}
 \label{ims:hmmmelody}
@@ -439,6 +464,12 @@ Overall the \ac{HMM} produced melodies without structure.
 
 Figure \ref{ims:hmmmelody} shows the melody generated with the \ac{HMM}. The resulting melody sounds chaotic and lacks overall structure.
 
+\section{Discussion}
+The computational complexity of the forward-backward procedure is $O(T N^2)$. Thus the training time increases greatly as the number of symbols increases and thus it is necessary to constrain the number of symbols as well as the number of states.
+\\
+Some melodies, especially when the training algorithm was run for a large number of iterations were pleasant. However the results are lacking when compared with those of a higher order Markov chain. A higher order Markov chain has faster training time and the results were as good or better and no good argument could be made to choose the \ac{HMM} for simple melodic generation over a chain.
+\\
+The power of a \ac{HMM} comes with its hidden states and observations; more complex structures benefit more from this. A better use of the model would be for harmonization or accompaniment. Allan used a \ac{HMM} for harmonization of chorales \cite{Allan2004}. The visible states represent melody notes and the hidden states chords. Such deeper structures are much more meaningful, however since the designed system does not support chords an attempt at harmonization was not made.
 
 \chapter{Instrumental generation with Markov Chains}
 \section{Introduction}
@@ -447,9 +478,10 @@ For this experiment a compositional engine will be designed that outputs melodie
 In order to construct such an instrumental generator an algorithm is required that can predict time-series data.
 
 A large advantage of recurrent neural networks over Markov chains and \ac{HMM} is that neural networks have greater representational power and can take into account syntactic and semantic features. A \ac{RNN} does not make the Markov assumption and is able to take into account long term dependencies.
-
 Markov chains have the advantage of being much simpler to implement and are extremely fast and efficient with the proper implementation. 
 Recurrent Neural Networks are more difficult to implement and to train. Various training algorithms exist to train a \ac{RNN}. Training a recurrent neural network is slower than a regular feed forward network. The poor results obtained from the \ac{LSTM} network (See chapter \ref{ch:accomp_lstm}) dissuade us from using them for the instrumental generator.
+
+Markov Chains can also be seen as a special case of a \ac{HMM}. The Markov Chain will be used over a \ac{HMM} as it is simpler and the transition probabilities can be directly calculated.
 
 This concept will utilize Markov Chains to construct a probabilistic model for a sequence of notes. The probability of the next note occurring depends on the previous state of the chain. See section \ref{sec:markov_backround}.
 
@@ -481,7 +513,13 @@ For a certain instrument, all the notes for that instrument in a MIDI file were 
  \label{algo:instrumm}
 \end{algorithm}
 
-A third order Markov Chain was used. That is, the previous three notes constitute the state of the model. A lower order would result in more novel and random melodies where a higher order would produce melodies with higher similarity.
+A third order Markov Chain was used. That is, the previous three notes constitute the state of the model. A lower order would result in more novel and random melodies where a higher order would produce melodies with higher similarity. 
+
+For a Markov chain the frequencies of the events can be used to calculate the transition probabilities. For a third order Markov chain the transition probabilities can be calculated by:
+
+\[ a_{i,j} = P(n_i|n_{i-3},n_{i-2},n_{i-1}) = \frac{\text{Count}(n_i, \{ n_{i-3},n_{i-2},n_{i-1} \} )}{\text{Count}(n_i)} \]
+where $\text{Count}(n_i, \{ n_{i-1},n_{i-2},n_{i-3} \} )$ is the number of times note $n_i$ occurred after notes $n_{i-3}, n_{i-2}, n_{i-1}$
+
 
 \subsection{Drums}
 The use of a Markov Chain can be expanded to include generation of percussion instruments. 
@@ -598,7 +636,12 @@ For this prototype we construct a neural network with the following parameters:
 The data for the network consists of the melody track and the accompaniment track. For each note in the melody track the note pitch and duration is given as inputs to the network, the output is the note pitch and duration of the corresponding note in the accompaniment track.
 
 \section{Results}
-%TODO
+\begin{figure}
+\centerline{\includegraphics[width=300px]{../images/ann_ff_accomp.pdf}}
+\caption{Accompaniment melody produced with a \ac{LSTM} network}
+\label{ims:lstmaccomp}
+\end{figure}
+%TODO discuss results
 
 \chapter{Accompaniment generation with a Markov Model}
 \section{Introduction}
@@ -646,9 +689,8 @@ More specifically, for each note in the melody track the odds are calculated for
 
 Figure \ref{ims:hmm_illu} illustrates a Markov Model. The states $s_i$ denote the notes of the main melody (for a first order Markov Chain) and the states $y_i$ denote the accompaniment notes for melody track. In the case of a \ac{HMM} he states $s_i$ are commonly hidden, however they are known in this case. The states $y_i$ are the output notes that we are interested in generating. 
 
-For this experiment the states are setup up as a second order Markov Chain; that is the next note is determined by the previous two notes. For this model we are not interested in determining thee next state $s_{i+1}$ thus a transmission matrix is not learnt. The probabilities of the output notes $y_i$ are learnt instead.
+For this experiment the states are setup up as a second order Markov Chain; that is the next note is determined by the previous two notes. For this model we are not interested in determining thee next state $s_{i+1}$ thus the state transition matrix is not learnt. The emission probabilities of the output notes $y_i$ are learnt instead.
 
-Since 
 
 \section{Results}
 Accompaniment generation with a Markov Model produces better results than with a \ac{LSTM} network. The states of the model are the notes of the main melody and the observations are the notes of the accompaniment. For a short input melody sequence the resulting accompaniment sounds rather pleasant and fits with the main melody. For longer melodies the accompaniment diverges from the main melody and is not in harmony.
