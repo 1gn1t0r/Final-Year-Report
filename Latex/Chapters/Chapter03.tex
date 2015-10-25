@@ -4,7 +4,7 @@
 % Conceptual design
 
 \chapter{Introduction}
-In this part of the document a conceptual design is proposed to solve the problem of composing music algorithmically.
+In this part a conceptual design is proposed to solve the problem of composing music algorithmically.
 Composing music algorithmically can be done in a variety of ways. Different types of algorithms can be utilized:
 \begin{itemize}
 \item Algorithms that utilize expert knowledge. Expert systems utilize knowledge from a specific domain in order to make decisions.
@@ -12,7 +12,7 @@ Composing music algorithmically can be done in a variety of ways. Different type
 \end{itemize}
 For an expert system to be used in algorithmic music composition knowledge from music theory is utilized in order for the algorithm to make decisions. When too many constraints are imposed on the algorithm the variety of the type of music produced is lessened.
 
-For this project however, the focus is on algorithms that can learn. In order to design an application that utilizes machine learning algorithms to compose music the project will first be decomposed into discrete units. The function and interaction of each unit will be investigated. 
+For this project however, the focus is on algorithms that can learn. This direction is taken as the application is required to produce music in various different styles. In order to design an application that utilizes machine learning algorithms to compose music the project will first be decomposed into discrete units. The function and interaction of each unit will be investigated. 
 
 Different types of machine learning algorithms will be investigated and the best solution will be chosen that satisfies the requirements of the project.
 
@@ -40,8 +40,8 @@ The operator is responsible for interacting with the application. The operator w
 If a certain piece of music is to be save the operator will be responsible for instructing the application to do so and to select the location the \ac{MIDI} file is to be saved
 
 \subsection{Functional Unit 2 - MIDI library }
-The MIDI library is a large collection of \ac{MIDI} files. The files in the \ac{MIDI} library are organized into categories. Each category represents a certain style of music
-The algorithm will utilize a subset of the library (a category) as input.
+The MIDI library is a large collection of \ac{MIDI} files. The files in the \ac{MIDI} library are organized into categories. Each category represents a certain style of music.
+The algorithm will utilize a subset of the library (a category) as an input dataset.
 
 \subsection{Functional Unit 3 - User Interface}
 The user interface is the front end of the application. The operator interacts with this functional unit in order to instruct the application what to do.
@@ -124,4 +124,7 @@ Some considerations need to be taken to ensure that the interface to the applica
 Functionally, it makes sense for the user to choose the filename and path of the melody to be saved. Similarly the user should be able to select which previously generated melody should be loaded.
 
 \chapter{Conclusion}
-In order to solve the problem of generating music algorithmically the task was broken down into its functional architecture. From this each functional unit and its interaction is made apparent. The core component of this project is the algorithm which is used to compose music
+In order to solve the problem of generating music algorithmically the task was broken down into its functional architecture. From this each functional unit and its interaction is made apparent. A clear separation was made between the different components and work can be done on each separately. 
+
+The core component of this project is the algorithm which is used to compose music. Possible machine learning algorithms will be investigated and implemented. Algorithms yielding good results will be kept for inclusion into the application. Possible music categories which serve as input datasets to the algorithms will also be investigated.
+

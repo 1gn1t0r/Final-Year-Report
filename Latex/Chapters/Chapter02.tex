@@ -80,7 +80,7 @@ The meta-event contains additional information such as text which can be display
   \label{tab:midievents}%
 \end{table}%
 
-Table \ref{tab:midievents} shows some of the possible midi events. Each event has a command and additional arguments.
+Table \ref{tab:midievents} shows some of the possible midi events. Each event has a command and additional arguments. Note-on and note-off are the two more important events in the table and indicate how long a note is played. 
 
 The full midi specification can be ordered online at \href{http://www.midi.org/}{midi.org}\footnote{http://www.midi.org/}
 
@@ -165,9 +165,9 @@ Tree based representations do not have a fixed size, as is commonly found in lin
 
 \ac{HMM} are stochastic methods that are used to model sequential data such as speech and gesture recognition. Both the underlying process which is hidden is stochastic and the observable process. Only a first order hidden markov model will be considered.
 %TODO insert citation
-Under the Markov property the next observation is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. When a event is generated from a state, the model moves into a new state based on its transition probabilities. The term hidden is commonly used to indicate that many different state sequences can generate the same observed sequence of events.
+Under the Markov property the next state is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. When a event is generated from a state, the model moves into a new state based on its transition probabilities. The term hidden is commonly used to indicate that many different state sequences can generate the same observed sequence of events.
 
-The \ac{HMM} is formally defined by:
+The \ac{HMM} is formally defined by the triple:
 \[\lambda = (A,B,\pi) \]
 where A is the transition matrix, B the emission matrix and $\pi$ the initial state vector. Let $S$ be the set of states, $V$ the set of observations, $Q$ a fixed state sequence of length $T$ and $O$ a corresponding observation sequence.
 The transition probabilities are then given by:
@@ -200,11 +200,11 @@ The state variable $\gamma_t(i) = P(q_t = S_i | O, \lambda)$ is given by:
 \gamma_t(i) = \frac{\alpha_t (i) \beta_t(i)}{\sum_{j=1}^N \alpha_t (j) \beta_t (j)}
 \]
 
-Upon which the parameters can be updated. The state transition probability is then given by:
+Upon which the parameters can be updated. The updated state transition probability is then given by:
 \[a'_{ij} = \frac{\sum^{T-1}_{t=1} \xi_t (i,j)}{\sum_{t=1}^{T-1} \gamma_t (i)} \]
-The emission probability is given by:
+The updated emission probability is given by:
 \[ b'_j (k) = \frac{\sum^T_{t=1,o_t = v_k} \gamma_t (j)}{\sum^T_{t=1} \gamma_t (j)} \]
-The initial probability by:
+The updated initial probability by:
 \[ \pi'_i = \gamma_1 (i) \]
 
 \subsection{Composition}
@@ -263,7 +263,7 @@ Context models such as Markov Chains have several advantages that are useful in 
 \caption{Figure of ANN in feed-forward topology}
 \label{ims:ANN_FF}
 \end{figure}
-An artifical neural networks consists of layers of artificial neuron\footnote{neurons are commonly referred to as units} (see figure \ref{ims:ANN_neuron}) that are connected to each other in a certain topology \cite{bishop1995neural}.
+An artificial neural networks consists of layers of artificial neurons\footnote{neurons are commonly referred to as units} (see figure \ref{ims:ANN_neuron}) that are connected to each other in a certain topology \cite{bishop1995neural}.
 
 Figure \ref{ims:ANN_FF} shows a multilayer ANN in feed-forward topology. The first layer is referred to as the input layer, the right-most layer is referred to as the output layer, the layers in between the input layer and the output layer are known as hidden layers.
 
@@ -308,7 +308,7 @@ In \cite{mozer1994neural} Mozer created a recurrent connectionist neural network
 The system works as follows:
 \begin{itemize}
 \item The network is trained on sample melodies from which it learns melodic and phrase constraints
-\item Representations of pitch, duration and harmonic structure that are based on psychological studies of human perception, based on Laden and Keefe's work \cite{laden1989representation}
+\item Representations of pitch, duration and harmonic structure are included that are based on psychological studies of human perception, based on Laden and Keefe's work \cite{laden1989representation}
 \end{itemize}
 The system yielded good results on simple structured artificial sequences however the system performed poorly on natural music\footnote{One critic described the resultant melodies as compositions only a mother could love}. Mozer described the system as lacking musical coherency \cite{mozer1994neural}. Furthermore the system performs poorly as the length of the pieces increases.
 
@@ -324,10 +324,10 @@ The topology of the network was arranged as follows:
 \begin{enumerate}
 \item Four cell blocks are connected to the input units for chords
 \item The last four cell blocks are connected to the inputs units for melody
-\item chord cell blocks have recurrent connections to themselves and melody cell blocks
-\item melody cell blocks have recurrent connections to other melody cell blocks
-\item output units for chords are connected to cell blocks for chords and to input units for chords
-\item output units for melody are connected to cell blocks for melody and to input units for melody
+\item Chord cell blocks have recurrent connections to themselves and melody cell blocks
+\item Melody cell blocks have recurrent connections to other melody cell blocks
+\item Output units for chords are connected to cell blocks for chords and to input units for chords
+\item Output units for melody are connected to cell blocks for melody and to input units for melody
 \end{enumerate}
 The underlaying chord structure was kept fixed.
 
@@ -340,7 +340,7 @@ Simple feed-forward neural networks do not have the functionality to remember pa
 
 Recurrent neural networks are able to encode temporal information though initial investigation by Mozer lead to limited success as compositions lacked global structure. 
 
-Further investigations by Douglas and Jurgen indicated that \ac{LTSM} networks are able to compose with local and global structure.
+Further investigations by Douglas and Jurgen indicated that \ac{LSTM} networks are able to compose with local and global structure.
 
 %****************************************************************************************************
 \section{Genetic Algorithms}
@@ -373,22 +373,23 @@ The algorithm proceeds as follows:
 \item Various forms of selection are available that determine which individuals will be in the next generation
 \end{enumerate}
 
-\textbf{Genetic operators} are used to generate diversity A genetic algorithm has a fixed set of genetic operators. Operators may include:
+Genetic operators are used to generate diversity A genetic algorithm has a fixed set of genetic operators. Operators may include:
 \begin{itemize}
 \item Reproduction - A parent from the population is carried over to the next generation
 \item Crossover - genotype of both parents are combined using different procedures
 \item Mutation - A single mutation is applied to a chromosome at a set mutation rate
 \end{itemize}
 
-The choice of a \textbf{fitness function} is a big problem when using a genetic algorithm to compose music \cite{Wiggins1998,Matic2010}. There is no objective method to rate whether a melody is good or bad \cite{Lo2012}. 
+The choice of a fitness function is a big problem when using a genetic algorithm to compose music \cite{Wiggins1998,Matic2010}. There is no objective method to rate whether a melody is good or bad \cite{Lo2012}. 
 Traditionally when posed against such tasks the fitness function is provided interactively by the user, i.e. the user rates whether the piece is good or bad
 
-The interactive GA approach is an approach to the fitness function where a human interactively rates the quality of a composition (fitness). A well known software that utlizes a neural network and a interactive interaction for a fitness function is GenJam \cite{Biles1996}. The drawback of having the user interactively evaluate the fitness of individuals is that it is time consuming and poses a processing bottleneck \cite{Eck2002}
+The interactive GA approach is an approach to the fitness function where a human interactively rates the quality of a composition (fitness). A well known software that utilizes a neural network and a interactive interaction for a fitness function is GenJam \cite{Biles1996}. The drawback of having the user interactively evaluate the fitness of individuals is that it is time consuming and poses a processing bottleneck \cite{Eck2002}
 
-\textbf{Selection} is the choice of which individuals will be chosen for the next generation. Selection concerns the reproduction and crossover operators. Some methods of selection include: 
+Selection is the choice of which individuals will be chosen for the next generation. Selection concerns the reproduction and crossover operators. Some methods of selection include: 
 \begin{itemize}
 \item Roulette wheel selection - chance of individual being chosen is proportional to fitness
-\item Tournament selection - tournament is staged between two individuals to detemine which one gets selected\footnote{This is tournament selection in its simplest form}.
+\item Tournament selection - tournament is staged between two individuals to determine which one gets selected\footnote{This is tournament selection in its simplest form}.
+\item Elitist selection - commonly the best few individuals are kept unchanged but are eligible to be selected as parents.
 \end{itemize}
 
 \subsection{Composition}
@@ -403,10 +404,10 @@ Genetic algorithms have already been used in a variety of work in algorithmic mu
 \item Various work into different fitness functions
 \end{itemize}
 
-In \cite{Alfonseca2007} the generated musical pieces had the style of well-known authors even when the fitness function only took relative pitch envelope into account and all generated note lengths were of fixed duration.
+In Alfonseca's system the generated musical pieces had the style of well-known authors even when the fitness function only took relative pitch envelope into account and all generated note lengths were of fixed duration \cite{Alfonseca2007}.
 \\
 \\
-\textbf{Thematic bridging} is the application of an initial music pattern to a final pattern over a specified duration \cite{Horner1991}. In this approach Horner modified or reordered elements in a music pattern through various operations. For example:
+Thematic bridging is the application of an initial music pattern to a final pattern over a specified duration \cite{Horner1991}. In this approach Horner modified or reordered elements in a music pattern through various operations. For example:
 
 Given the initial note pattern of:
  \begin{verbatim}Gb Bb F Ab Db \end{verbatim}
@@ -417,7 +418,7 @@ the musical output could be:
 For thematic bridging a composite fitness function was used which rates how close the developed pattern matches the final pattern and whether the ordering of the elements are correct 
 \\
 \\
-Similarly a system of \textbf{variations} was developed Jacob that proceeds as follows \cite{Jacob1995}:
+Similarly a system of variations was developed Jacob that proceeds as follows \cite{Jacob1995}:
 \begin{enumerate}
 \item Define a primary set of motives
 \item Compose phrases by layering and sequencing new motives
@@ -427,7 +428,7 @@ Similarly a system of \textbf{variations} was developed Jacob that proceeds as f
 Jacob's system had a human judge evaluate the individual chromosomes. 
 \\
 \\
-\textbf{\ac{NCD}} has also been commonly used as a fitness function, for more information about the normalized compression distance see sections \ref{sec:class_ncd} (in music classification) and \ref{sec:ncdfitness} (as a fitness function).
+\ac{NCD} has also been commonly used as a fitness function, for more information about the normalized compression distance see sections \ref{sec:class_ncd} (in music classification) and \ref{sec:ncdfitness} (as a fitness function).
 Alfonseca proposed the following genetic algorithm scheme for composing melodies \cite{Alfonseca2007}:
 \begin{enumerate}
 \item Define a set of $M$ musical pieces for a guide set $G$
@@ -439,7 +440,7 @@ Alfonseca proposed the following genetic algorithm scheme for composing melodies
 
 
 \subsection{Conclusion}
-There are various variations on genetic algorithms and genetic programs, however evolutionary algorithms are a viable means to compose music.
+There are a variety of alterations on genetic algorithms and genetic programs, however evolutionary algorithms in general are a viable means to compose music.
 
 The encoding of a musical piece as a chromosome affects the interactions of the genetic operators on the musical piece and most authors encode the problem differently.
 
@@ -489,8 +490,8 @@ An approximation of the normalized information distance is commonly used.  $K(x)
 where $Z(xy)$ is the length of $x+y$ compressed by $Z$. 
 Any good compressor may be used for $Z$ such as 
 \begin{itemize}
-\item gzip
-\item bzip2
+\item Gzip
+\item Bzip2
 \item Lempel-Ziv and its variations
 \end{itemize}
 \subsection{Literature}
@@ -525,7 +526,7 @@ He included some of the following metrics as input to the neural network \cite{M
 \item Pitch variety - number of pitches used at least once
 \item Most common pitch class - Most common pitch divided by number of possible pitches
 \end{itemize}
-For a full list please see his MacKays dissertation on MIDI classification \cite{Mckay2004}
+The complete set can be found in Mckay's dissertation \cite{Mckay2004}
 Using the complete list of metrics neural networks had a success rate of $83\%$.
 %********************************************************************************************************
 %********************************************************************************************************
@@ -550,7 +551,7 @@ Fitness functions can be categorized as follows:
 \item Learning based functions - Fitness functions that learn from previous data
 \end{itemize}
 
-Learned fitness functions are sensitive to input data and the selection of features is a difficult task \cite{Dostal2013}.
+Learned fitness functions are sensitive to input data and the selection of features is a difficult task \cite{Dostal2013}, however the focus here is on learning algorithms.
 %********************************************************************************************************
 
 
@@ -617,7 +618,7 @@ As with Zipf's law the fitness is the weighted sum of similarity measures:
 \begin{equation}f(\vec{A_1}, \ldots, \vec{A_n}; \vec{B_1}, \ldots, \vec{B_n}) = \sum^N_{i=1} w_i f_i (\vec{A_i}, \vec{B_i}) \label{eq:fitcosfit} \end{equation}
 The fitness function rates the fitness of the evolved individual with a target piece.
 
-Jensen conducted multiple experiments using the fitness function in equation \ref{eq:fitcosfit}. At first only a single metric was included and thereafter multiple metrics. As more metrics were included the evolved melodies became more similar to the target piece. More pleasant melodies were evolved when the target piece was The Beatle's Let It Go than Mozart's Piano Sonato No. 16. There was no correlation between melody and rhythm.
+Jensen conducted multiple experiments using the fitness function in equation \ref{eq:fitcosfit}. The metrics covered indicate the frequency of certain events. At first only a single metric was included and thereafter multiple metrics. As more metrics were included the evolved melodies became more similar to the target piece. More pleasant melodies were evolved when the target piece was The Beatle's Let It Go than Mozart's Piano Sonato No. 16. There was no correlation between melody and rhythm.
 Metrics included for the fitness function were:
 \begin{itemize}
 \item Pitch
@@ -649,7 +650,7 @@ Metrics that included the number of new note events in a measure, the number of 
 Biles argues that the reason for this is that humans listen to music in more complex ways and that simple statistical measures fail to capture this. Zipfs law, which only captures the scaling properties of music also yielded poor results as a fitness function for similar reasons \cite{Dostal2013} (See section \ref{sec:zipfs_fitness}). 
 \\
 \\
-An \textbf{\ac{ART} network} has been used as a fitness function whereby a \ac{GA} utilizes clustered representations of rhythm styles to interactively generate rhythm patterns to according to a certain style \cite{Burton97geneticalgorithm}.
+An \ac{ART} network has been used as a fitness function whereby a \ac{GA} utilizes clustered representations of rhythm styles to interactively generate rhythm patterns to according to a certain style \cite{Burton97geneticalgorithm}.
 
 An adaptive resonance theory network utilizes unsupervised learning and clustering algorithms to recognize patterns. New clusters are created if a pattern cannot be associated with existing clusters. Another characteristic of \ac{ART} networks is that new training does not cause loss or corruption of old training data \cite{carpenter2010adaptive}
 
@@ -679,11 +680,11 @@ Burton had the \ac{ART} network fitness function operate as follows \cite{Burton
 \item Fitness is assigned as a degree of similarity to a cluster. 
 \end{enumerate}
 
-\textbf{NEUROGEN} is another attempt at using a neural network as a fitness function to compose small diatonic, western, four part harmony compositions.
+NEUROGEN is another attempt at using a neural network as a fitness function to compose small diatonic, western, four part harmony compositions.
 The system has shown limited success however it was able to produce 4 bars of music \cite{gibson1991neurogen}.
 \\
 \\
-Chen used a \textbf{\ac{SRN}} with composition rules on tonality and rhythm as a fitness function for a \ac{GA} \cite{Chen2001}. The simple recurrent network has an input layer that represents a measure at time $T$ with the output layer representing the measure at time $T+1$.
+Chen used a \ac{SRN} with composition rules on tonality and rhythm as a fitness function for a \ac{GA} \cite{Chen2001}. The simple recurrent network has an input layer that represents a measure at time $T$ with the output layer representing the measure at time $T+1$.
 A recurrent network is used as a single step predictor to compose music. The network predicts notes at $T+1$ using the notes at time $T$. After the network has been trained it can be seeded with inital values to generate novel compositions.
 The following constraints were used:
 \begin{enumerate}
@@ -710,7 +711,7 @@ Alfonseca encoded the chromosomes as $N$ vectors containing a pair of integers. 
 \section{Interactive fitness functions} \label{sec:iga}
 Genetic algorithms which employ user interaction as a means of rating the fitness of are known as \acfp{IGA}.
 
-In \cite{Unehara} constructs a system that composes 16-bars music using a GA. The user rates individual chromosomes, new chromosomes are applied by genetic algorithm and the user is asked to rate the individuals again. Should the user find a good piece they may favorite it. The fitness of the chromosomes were seen to increase as the generations increased, however it is unknown whether the melodies were pleasant.
+Unehara constructed a system that composes 16-bars music using a GA \cite{Unehara}. The user rates individual chromosomes, new chromosomes are applied by genetic algorithm and the user is asked to rate the individuals again. Should the user find a good piece they may favorite it. The fitness of the chromosomes were seen to increase as the generations increased, however it is unknown whether the melodies were pleasant.
 
 Using an interactive fitness function may lead to better results than most other fitness functions however it is a tedious and demanding process and may also lead to inconsistencies in evaluation.
 Some researches try to reduce this effect by constructing \acp{ANN} which learn the user's ratings, and as such may be used in place of the interactive fitness function \cite{Biles1996,Spector_inductionand}. See section \ref{sec:ANN_fitness} for the use of \acp{ANN} as fitness functions.
