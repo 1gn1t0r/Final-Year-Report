@@ -450,7 +450,7 @@ For which the update rules according to Levinson are:
 \[ a'_{mn} = \frac{\sum^K_{k=1} \sum^{T_k -1 }_{t=1} \xi^{(k)}_t (m,n)}{\sum^K_{k=1} \sum^{T_k-1}_{t=1} \gamma_t^{(k)}(m)} \]
 
 \item Observation emission:
-\[ b'_n (m) = \frac{\sum^K_{k=1} \sum^{T_k -1 }_{t=1m o_t^{(k)} = v_m} \gamma^{(k)}_t (n)}{\sum^K_{k=1} \sum^{T_k-1}_{t=1} \gamma_t^{(k)}(n)} \]
+\[ b'_n (m) = \frac{\sum^K_{k=1} \sum^{T_k -1 }_{t=1, o_t^{(k)} = v_m} \gamma^{(k)}_t (n)}{\sum^K_{k=1} \sum^{T_k-1}_{t=1} \gamma_t^{(k)}(n)} \]
 
 \item Initial state:
 \[ \pi'_n = \frac{1}{K} \sum^K_{k=1} \gamma_1^{(k)}(n)  \]
@@ -811,7 +811,6 @@ Using a larger number of iterations of $200$ more variety and change can be seen
 
 \section{Conclusion}
 The problem with this method is that it might not seem creative, even though it can produce interesting pieces. Another problem is that it might fall in a local minimum, where further replacements cannot improve the probability of the piece. Lastly since a first order Markov Model was used to calculate the probability of the piece it could not always produce changes which had a overall theme. Some changes felt out of place.
-
 Overall the method produced pleasing results and indicates that modifications to existing pieces can be a efficient way to generate new pieces in a certain style.
 
 In order to improve this method a different of more accurate model could be used other than the first order Markov chain. A \ac{HMM} might yield better results.
