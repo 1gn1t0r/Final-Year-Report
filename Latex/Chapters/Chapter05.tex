@@ -8,7 +8,7 @@ In this part the design of the end user application will be discussed in detail.
 
 \chapter{Technology, Platform and Programming Language}
 \section{Introduction}
-Some algorithms and features lend themselves to being implemented more easily in certain languages than other. Some implementations of the algorithms considered are notoriously difficult and external libraries were used in this. Thus a programming language needs to be chosen that does not restrain the functionality of the application. 
+Some algorithms and features lend themselves to being implemented more easily in certain languages than other. A programming language needs to be chosen that does not restrain the functionality of the application. 
 The four languages with most support include:
 \begin{enumerate}
 \item Python
@@ -16,10 +16,8 @@ The four languages with most support include:
 \item Java
 \item C++
 \end{enumerate}
-THese languages are ranked according to subjective estimates on the amount of programming time required, with C++ taking the most time.
 
 Machine learning libraries exist for all of the above mentioned languages. Python has poor support for rich user interfaces. Java is a good contender and is cross platform. Haskell has strong expressiveness and powerful language features.
-
 
 \section{Trade-off study}
 
@@ -196,9 +194,9 @@ The main goal of the application is to generate melodies according to a certain 
 Since training machine learning algorithms take up a lot of time it is not feasible to train the algorithm on the fly. Training will take place beforehand and the resulting data structure of the algorithm will be cached to a file. 
 For example a Neural Network will save its topology and weights to a file; this allows the application to load the file, present inputs to the neural network and output a result without spending time learning the optimal weights for the network.
 
-Additional features would be to allow the user to save a generated melody to a file (in \ac{MIDI} or a custom file format), load or play an existing \ac{MIDI} file (for comparison or other aims), re-randomize a generated composition and view more information or properties of the generated music piece.
+Additional features would be to allow the user to save a generated melody to a file (in \ac{MIDI} or a custom file format), load and play an existing \ac{MIDI} file (for comparison or other aims), re-randomize a generated composition and view more information or properties of the generated music piece.
 
-The application is to be used by end users which do not have background on machine learning. The application is be as user as friendly as possible while still having flexibility in composing songs. The user interface is to visually display the song and playback of it. Playback functionality such as playing and stopping a song are mandatory.
+The application is to be used by end users which do not have background on machine learning. The application is to be as user-friendly as possible while still having flexibility in composing songs. The user interface is to visually display the song and playback of it. Playback functionality such as playing and stopping a song are mandatory.
 
 To summarize, the application will:
 \begin{enumerate}
@@ -248,7 +246,7 @@ Figure \ref{ims:uiplay} indicates the starting interface of the application. Thi
 \end{figure}
 
 
-Figure \ref{ims:uicompose} allows the user to select the music style or category for music to be generated in. A track is a sequence of notes played in a particular instrument. A user is able to add new tracks using the provided button, which takes them to a new window as in figure \ref{ims:uitrack}. If a user double clicks on a specific track the frequency metrics of the track are shown as in figure \ref{ims:uimetrics}.
+The interface as shown in figure \ref{ims:uicompose} allows the user to select the music style or category for music to be generated in. A track is a sequence of notes played in a particular instrument. A user is able to add new tracks using the provided button, which takes them to a new window as in figure \ref{ims:uitrack}. If a user double clicks on a specific track the frequency metrics of the track are shown as in figure \ref{ims:uimetrics}.
 
 
 \section{Track generation}
@@ -291,7 +289,7 @@ Figure \ref{ims:alphatab} indicates a music sheet rendered with Alphatab. Note t
 Since the library is open source it will be modified to suit our needs. Guitar tabs, timing information, lyrics and any other excessive information will be removed. In addition it is necessary to show which note is currently played when a melody is played. The active note will be displayed in red.
 
 \begin{figure}
-\centerline{\includegraphics[width=400px]{../images/music_sheet_visualization.png}}
+\centerline{\includegraphics[width=300px]{../images/music_sheet_visualization.png}}
 \caption{Desired notes visualization}
 \label{ims:uiharrynotesvisualization}
 \end{figure}
@@ -316,7 +314,7 @@ Figure \ref{ims:uiharrynotesvisualization} displays the designed simple notes vi
 \end{figure}
 
 Figure \ref{ims:uiflow} shows the state diagram of the user interface. 
-From the figure it can be seen that the Playback UI controls playback of a single composition. From the composition UI the necessary tools and functionality can be access to create new melodies.
+From the figure it can be seen that the Playback UI controls playback of a single composition. From the composition UI the necessary tools and functionality can be accessed to create new melodies.
 
 
 % Functionality and features
