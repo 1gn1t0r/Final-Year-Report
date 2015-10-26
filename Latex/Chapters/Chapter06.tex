@@ -101,7 +101,7 @@ Some interesting subjective observations made include:
 \end{enumerate}
 
 \chapter{Conclusion}
-The aim of this project was to design an application that is able to compose melodies in a certain musical style using machine learning algorithms. A brief survey was done on existing attempts to compose melodies using machine learning techniques.
+The aim of this project was to design an application that is able to compose melodies in a certain musical style using machine learning algorithms. A brief survey was done on existing attempts to compose melodies algorithmically.
 \\
 
 Evolutionary algorithms are versatile and are well suited to the the task of musical composition. The task of designing a good fitness function for a genetic algorithm is rather formidable.
@@ -114,8 +114,8 @@ A different approach was taken thereafter, other than relying on statistical pro
 Overall these probabilistic models yield good results, however the melodies produce lack an overarching theme and structure. Furthermore since Markov Models require a input dataset in order to calculate the state transition and observation emission probabilities, the novelty and composition value are low. These models produce pleasant results but are not creative or original. This is in contrast to the evolutionary algorithms.
 \\
 
-Further works is needed to develop an algorithm that is able to compose melodies that have an overarching theme or structure.  Further work can be done using recurrent neural networks in a variety of topologies or using a custom \ac{HMM} that is designed for a single musical style. 
-These two techniques were used in a simplistic way to generate the accompaniment to a melody with acceptable results, however these models are powerful and further work can be done.
+More work is needed to develop an algorithm that is able to compose melodies that have an overarching theme or structure.  Further work can be done using recurrent neural networks in a variety of topologies or using a custom \ac{HMM} that is designed for a single musical style. 
+These two techniques (\ac{HMM} and \ac{LSTM}) were used in a simplistic way to generate the accompaniment to a melody with acceptable results, however these models are powerful and further work can be done.
 \\
 
 The results of most the algorithms could be improved by incorporating domain knowledge into the system. Musical knowledge could constrain the algorithm to produce more acceptable results. A hybrid system that incorporates expert knowledge may reduce the number of unpleasant patterns produced and improve note transitions and so forth.

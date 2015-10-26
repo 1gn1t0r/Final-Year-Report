@@ -3,7 +3,7 @@
 \section{Introduction}
 Music is the art form of sound. Certain characteristics and patterns can be identified that belong to certain types of music.
 
-
+Algorithmic music composition can be described as a sequence of rules for combining musical parts into a whole \cite{Tanaka1993}.
 There has been a lot of work done in computer generated music and computer assisted music composition.The design of computational methods for musical style imitation has been far more difficult than initially imagined.
 Recent research into music composition by means of evolutionary genetic algorithms and other machine learning algorithms such as neural networks have met some success.
 
@@ -37,7 +37,7 @@ The application is required to have the following features :
 \begin{enumerate}
 \item Melodies are to be algorithmically composed according to a certain style.
 \item Provide playback functionality as well as saving and loading of previously composed songs.
-\item The user should be able to select the style
+\item The user should be able to select the style.
 \item The application should utilize a \acs{MIDI} library which will be used as training data for the machine learning algorithms.
 \end{enumerate}
 
@@ -46,7 +46,7 @@ Figure \ref{ims:archm} indicates the interaction between the user and the softwa
 Since the quality and aesthetics of a musical melody is subjective, it is beyond the scope of the application to ensure that each melody produced is objectively good\footnote{The focus is rather on the generated musical pieces not being objectively bad}. Composed musical pieces will take the form of simple melodies.
 
 \section{Alternative solutions}
-A wide variety of research has been done and in this section we will briefly look at some of the existing solutions and their drawbacks
+A wide variety of research has been done and in this section we will briefly look at some of the existing solutions and their drawbacks.
 
 \subsection{NEUROGEN}
 NEUROGEN is a system that was designed to compose small diatonic, western-type, four part harmony compositions based on a training set of example musical fragments. NEUROGEN tries to produce coherent music of the type that is typically found in traditionally hymns \cite{gibson1991neurogen}.
@@ -76,10 +76,10 @@ See section \ref{sec:iga} for work on \acsp{IGA}
 \subsection{jMusic}
 jMusic is an application and library that facilitates musical composition in Java \cite{Sorensen}. The application is designed to provide composers and developers a plethora of compositional tools that can be used for generative music, instrument building, interactive performance and music analysis. In addition the software provides the following:
 \begin{itemize}
-\item Familar music data structures
-\item Organizing, manipulating and analyzing music data
-\item Real time playback of music scores
-\item Read, write \ac{MIDI}, \ac{XML} and .jm files
+\item Familar music data structures.
+\item Organizing, manipulating and analyzing music data.
+\item Real time playback of music scores.
+\item Read, write \ac{MIDI}, \ac{XML} and .jm files.
 \end{itemize}
 
 jMusic is mostly a developer tool to facilitate composition. It does not feature a user interface which can be used to easily generate compositions. Furthermore since it is mostly a tool to aid music composition it does not employ machine learning algorithms. The library requires exact and descriptive input in order to generate melodies, and as such requires domain knowledge.
