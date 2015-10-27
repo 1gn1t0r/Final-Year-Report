@@ -9,7 +9,7 @@ In this part possible algorithms will be investigated, designed for composition 
 The system operates on MIDI files. MIDI events are processed and the resulting notes are stored in a sequence where the pitch and duration of each note are recorded. A note is represented in MIDI as a number from $0$ to $127$.
 Thus for each MIDI track a monophonic melody can be extracted.
 
-A corpus of MIDI files were collected for different styles of music. Each of these will be a input dataset for a algorithm such that the result is close to the overall style.
+A corpus of MIDI files was collected for different styles of music. Each of these will be an input dataset for an algorithm such that the result is close to the overall style.
 The following categories were used to test the algorithms:
 \begin{enumerate}
 \item A mixture of Classical music (665)
@@ -28,7 +28,7 @@ This section discusses how music is represented internally in the system and how
 Proper data structures are extremely important for good algorithms \footnote{Bad programmers worry about the code. Good programmers worry about data structures and their relationships \mytilde Linus Torvalds}.
 
 \section{Assumptions and simplifications}
-For this system our model of music is simplified and we do not make provisions for chords. Melodies are monophonic and are simply a list of notes of their durations.
+For this system, our model of music is simplified and we do not make provisions for chords. Melodies are monophonic and are simply a list of notes of their durations.
 
 Furthermore, we assume all files are \ac{MIDI} \emph{Track type $1$}.
 
@@ -68,7 +68,7 @@ MIDI files are converted into compositions.
 \label{ims:compillu}
 \end{figure}
 
-Figure \ref{ims:compillu} illustrates the relation between the above mentioned structures for a midi file.
+Figure \ref{ims:compillu} illustrates the relation between the above-mentioned structures for a midi file.
 
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/uml_notes.pdf}}
@@ -80,9 +80,9 @@ Figure \ref{ims:uml_notes} indicates the interactions between Notes, Melody Sequ
 
 \section{Generator Algorithms}
 %In this section the data structures are discussed which aid with the generating of melody sequences through the algorithms that are discussed in this section. 
-All algorithms considered in this section derive from the interface INoteGenerator. This exposes basic functionality for generating a algorithm and determining whether the Next function can be called. The Next function returns a new random melody sequence without resetting the generator. See figure \ref{ims:uml_generator}.
+All algorithms considered in this section derive from the interface INoteGenerator. This exposes basic functionality for generating an algorithm and determining whether the Next function can be called. The Next function returns a new random melody sequence without resetting the generator. See figure \ref{ims:uml_generator}.
 
-Using this abstracted design allows the user to select any algorithm to be used for composition, and the main application logic only needs to call Generate() or Next() as required. The details of the algorithm implementation is abstracted away.
+Using this abstracted design allows the user to select any algorithm to be used for composition, and the main application logic only needs to call Generate() or Next() as required. The details of the algorithm implementation are abstracted away.
 
 \begin{figure}
 \centerline{\includegraphics[width=250px]{../images/uml_generator.pdf}}
@@ -97,7 +97,7 @@ Using this abstracted design allows the user to select any algorithm to be used 
 
 \chapter{Genetic Algorithm for Melody Generation}
 
-For this project a quantitative approach is taken toward algorithmic music composition. In particular quantitative metrics will be used in the fitness functions of the genetic algorithm.
+For this project, a quantitative approach is taken toward algorithmic music composition. In particular, quantitative metrics will be used in the fitness functions of the genetic algorithm.
 
 In section \label{chap:comp_algo} the following types of music composition algorithms were investigated:
 \begin{enumerate}
@@ -136,22 +136,22 @@ Evolutionary algorithms come in a variety of different types. The two most commo
 
 A flexible genetic programming model will be developed that is able to function with the investigated fitness functions. 
 
-The two largest problems for a evolutionary computing problem is:
+The two largest problems for an evolutionary computing problem is:
 \begin{enumerate}
 \item Obtaining a good representation of the problem
 \item Obtaining a good fitness function
 \end{enumerate}
-A genetic algorithm modifies the structure of an individual, if the structure is poorly chosen then a optimal solution wont by found by the algorithm.
+A genetic algorithm modifies the structure of an individual, if the structure is poorly chosen then an optimal solution won't by found by the algorithm.
 An ideal fitness function is able to quantify the fitness of an individual. An ideal fitness function in music composition would map the human perception of pleasantness into a fitness value. 
 
 \section{Fitness functions}
 The fitness function is a primary research interest in genetic music composition. 
-An ideal fitness function captures the human perception of pleasantness in music, however there have not been practical advances in this direction. Statistical measures will rather be used.
+An ideal fitness function captures the human perception of pleasantness in music however, there have not been practical advances in this direction. Statistical measures will rather be used.
 
 Of the set of investigated fitness functions only the following functions will be implemented:
 \begin{enumerate}
 \item Cosine similarity
-\item Normalized Compressions Distance
+\item Normalized Compression Distance
 \end{enumerate}
 Since interactive evaluation is slow, Zipf's law is superseded by Cosine similarity and training neural networks as fitness functions pose a large number of problems.
 
@@ -191,7 +191,7 @@ Genetic operations such as mutation and crossover may be used conventionally.
 \section{Metrics} \label{chap:metrics}
 Feature extraction is required to reduce the search space and to provide the fitness function with musically meaningful measures with which to rate the fitness. In this section we cover some quantitative metrics that may be used as measures to identify or represent music.
 
-The frequencies of a metric is used in the Cosine Similarity fitness function.
+The frequencies of a metric are used in the Cosine Similarity fitness function.
 
 The different types of metrics that will be used include:
 \begin{enumerate}
@@ -261,7 +261,7 @@ The fitness function that will be used is:
 The following representation scheme was designed:
 \begin{itemize}
 \item A note is surrounded in parentheses.
-\item The note pitch is given by the chromatic tone symbol followed the the octave number.
+\item The note pitch is given by the chromatic tone symbol followed the octave number.
 \item The duration is given after a hyphen. A standard note duration is used where possible otherwise the numeric value is given.
 \item 
 A sequence of notes can be given by: 
@@ -419,7 +419,7 @@ The following frequency metrics produced good or pleasant results:
 
 \section{Conclusion}
 
-The decision was made to utilize a genetic programming algorithm since the tree structure accommodates the hierarchical nature of music. Genetic programming provides flexibility, variety of possible styles and a large amount of research has been done one fitness functions for genetic algorithms.
+The decision was made to utilize a genetic programming algorithm since the tree structure accommodates the hierarchical nature of music. Genetic programming provides flexibility, a variety of possible styles and a large amount of research has been done one fitness functions for genetic algorithms.
 
 Fitness functions require good measures that make it possible to rate musical pieces quantitatively. A set of metrics were developed in which musical pieces can be measured.
 
@@ -494,9 +494,9 @@ The power of a \ac{HMM} comes with its hidden states and observations; more comp
 \section{Introduction}
 For this experiment a compositional engine will be designed that outputs melodies for a specific instrument. 
 
-In order to construct such an instrumental generator an algorithm is required that can predict time-series data.
+In order to construct such an instrumental generator, an algorithm is required that can predict time-series data.
 
-A large advantage of recurrent neural networks over Markov chains and \acs{HMM} is that neural networks have greater representational power and can take into account syntactic and semantic features. A \ac{RNN} does not make the Markov assumption and is able to take into account long term dependencies.
+A large advantage of recurrent neural networks over Markov chains and \acs{HMM} is that neural networks have greater representational power and can take into account syntactic and semantic features. A \ac{RNN} does not make the Markov assumption and is able to take into account long-term dependencies.
 Markov chains have the advantage of being much simpler to implement and are extremely fast and efficient with the proper implementation. 
 Recurrent Neural Networks are more difficult to implement and to train. Various training algorithms exist to train a \ac{RNN}. Training a recurrent neural network is slower than a regular feed forward network. The poor results obtained from the \ac{LSTM} network (See chapter \ref{ch:accomp_lstm}) dissuade us from using them for the instrumental generator.
 
@@ -591,7 +591,7 @@ Melodies produced with Markov Chains are in the same style as the input songs. T
 \section{Introduction}
 The \ac{LSTM} network is a \acf{RNN}, however it is more optimized and better suited to classify, process and predict time series in the case when there are long lags of indeterminate length between important events. In this experiment a \ac{LSTM} network is used to generate an accompaniment track for a main melody track
 
-A \ac{RNN} has greater representational power and can take into account syntactic and semantic features. A \ac{RNN} also does not make the Markov assumption and is able to take into account long term dependencies.
+A \ac{RNN} has greater representational power and can take into account syntactic and semantic features. A \ac{RNN} also does not make the Markov assumption and is able to take into account long-term dependencies.
 
 \section{Methodology}
 The \ac{LSTM} accompaniment is also generated for a specific instrument. 
@@ -763,7 +763,7 @@ The idea here is to generate a melody from an extant music piece and modifying i
 Given some model $\lambda$ we modify some piece $p$ into a new piece $p'$ such that $\Pr(p'|\lambda) > P(p|\lambda)$.
 
 
-In order to modify the piece various sampling methods can be used. The idea is to replace a note of a piece with some other note in an attempt to increase the probability that the new piece come from the model. 
+In order to modify the piece various sampling methods can be used. The idea is to replace a note of a piece with some other note in an attempt to increase the probability that the new piece comes from the model. 
 
 \section{Methodology}
 The model to be used will be a simple first order Markov chain. The model is able to evaluate the probability that a music piece or sequence of notes originated from it, i.e. it can calculate $\Pr(p|\lambda)$. The search space for new notes is the set of all notes contained within the Markov chain.
@@ -820,7 +820,7 @@ Using a larger number of iterations of $200$ more variety and change can be seen
 
 
 \section{Conclusion}
-The problem with this method is that it might not seem creative, even though it can produce interesting pieces. Another problem is that it might fall in a local minimum, where further replacements cannot improve the probability of the piece. Lastly since a first order Markov Model was used to calculate the probability of the piece it could not always produce changes which had a overall theme. Some changes felt out of place.
-Overall the method produced pleasing results and indicates that modifications to existing pieces can be a efficient way to generate new pieces in a certain style.
+The problem with this method is that it might not seem creative, even though it can produce interesting pieces. Another problem is that it might fall in a local minimum, where further replacements cannot improve the probability of the piece. Lastly since a first order Markov Model was used to calculate the probability of the piece it could not always produce changes which had an overall theme. Some changes felt out of place.
+Overall the method produced pleasing results and indicates that modifications to existing pieces can be an efficient way to generate new pieces in a certain style.
 
-In order to improve this method a different of more accurate model could be used other than the first order Markov chain. A \ac{HMM} might yield better results.
+In order to improve this method, a different or more accurate model could be used other than the first order Markov chain. A \ac{HMM} might yield better results.

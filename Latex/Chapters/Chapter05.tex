@@ -4,7 +4,7 @@
 % Detail design
 
 \chapter{Introduction}
-In this part the design of the end user application will be discussed in detail. Topics covered include the final selection of algorithms in the application, the design of the user interface, a high level overview of the data structures used, the functionality and features of the application and finally some additional considerations will be reviewed.
+In this part the design of the end user application will be discussed in detail. Topics covered include the final selection of algorithms in the application, the design of the user interface, a high-level overview of the data structures used, the functionality and features of the application and finally some additional considerations will be reviewed.
 
 \chapter{Technology, Platform and Programming Language}
 \section{Introduction}
@@ -12,25 +12,25 @@ Some algorithms and features lend themselves to being implemented more easily in
 The four languages with most support include:
 \begin{enumerate}
 \item Python
-\item C\# (and other .NET languages)
-\item Java
+\item C\# (and other .NET languages
+)\item Java
 \item C++
 \end{enumerate}
 
-Machine learning libraries exist for all of the above mentioned languages. Python has poor support for rich user interfaces. Java is a good contender and is cross platform. Haskell has strong expressiveness and powerful language features.
+Machine learning libraries exist for all of the above-mentioned languages. Python has poor support for rich user interfaces. Java is a good contender and is cross-platform. Haskell has strong expressiveness and powerful language features.
 
 \section{Trade-off study}
 
-Thus in order to make a final selection a trade off study was conducted. Additional factors included in the trade-off study were the expressiveness and amount of features in a language and the cross platform compatibility. These features have a lower weighing.
-Consideration is made to the end user and the user interface support is given the highest weighing.  
+Thus in order to make a final selection a trade-off study was conducted. Additional factors included in the trade-off study were the expressiveness and amount of features in a language and the cross-platform compatibility. These features have a lower weighting.
+Consideration is made to the end user and the user interface support is given the highest weighting.  
 
 Thus the factors considered are:
 \begin{itemize}
 \item Development speed - Estimated amount of programmer time required in each language.
 \item Available support and help - How easy it is to obtain help and support
-\item Available machine learning and pattern recognition libraries. Implementation of some algorithms prove difficult.
+\item Available machine learning and pattern recognition libraries. Implementation of some algorithms may prove difficult.
 \item \ac{UI} design and libraries - Availability of libraries to design a good user interface and experience
-\item Cross platform compatibility - How well does the language, features and libraries run on other platforms
+\item cross-platform compatibility - How well does the language, features and libraries run on other platforms
 \item Expressiveness and features - Language features which ease development. Expressive languages facilitate advanced data structures and algorithms in few \ac{LOC}
 \end{itemize}
 
@@ -46,7 +46,7 @@ Thus the factors considered are:
     Available support and help & 0.2   & 8     & 8     & 8     & 6     & 4 \\
     Machine learning libraries & 0.4   & 6     & 8     & 9     & 8     & 4 \\
     \acs{UI} design and libraries & 0.6   & 10    & 8     & 5     & 7     & 3 \\
-    Cross platform compatibility & 0.2   & 6     & 10    & 10    & 10    & 10 \\
+    cross-platform compatibility & 0.2   & 6     & 10    & 10    & 10    & 10 \\
     Expressiveness and features & 0.4   & 7     & 6     & 8     & 5     & 10 \\
     \midrule
     Total & 2.3   & 18    & 17.5  & 17.4  & 15.1  & 14.7 \\
@@ -56,7 +56,7 @@ Thus the factors considered are:
 \end{table}%
 
 \section{Discussion}
-Winner: \emph{C\#}\footnote{The algorithmic code is cross platform and can be run through Mono, even though the graphical front end developed in \ac{WPF} cannot.}
+Winner: \emph{C\#}\footnote{The algorithmic code is cross-platform and can be run through Mono, even though the graphical front end developed in \ac{WPF} cannot.}
 
 .NET languages facilitate the use of \ac{WPF} - a graphical system for rendering user interfaces, which will allow a rich user experience to be developed. Java and Python are good contenders.
 
@@ -81,7 +81,7 @@ The algorithms for consideration are:
 \item Instrumental generation with Markov Chains.
 \end{enumerate}
 
-The selection of algorithms will be done by means of elimination. Algorithms that yielded sub minimum results will not be selected for inclusion into the end user application.
+The selection of algorithms will be done by means of elimination. Algorithms that yielded sub-minimum results will not be selected for inclusion into the end user application.
 
 \section{Trade-off studies}
 For the final end-user application only a subset of algorithms will be chosen. In order to quantitatively select good algorithms a trade-off study will be done on the investigated algorithms. The factors considered are:
@@ -89,7 +89,7 @@ For the final end-user application only a subset of algorithms will be chosen. I
 \item Training time - The amount of time taken to train the algorithm on initial data.
 \item Generation time - The amount of time the algorithm takes to produce a melody after it is trained.
 \item Flexibility - How well the algorithm can accommodate different input data. How easily it can be extended or modified.
-\item Pleasantness - Subjective measure of good a melody is.
+\item Pleasantness - Subjective measure of how good a melody is.
 \end{itemize}
 % Table generated by Excel2LaTeX from sheet 'Sheet2'
 \begin{table}[htbp]
@@ -189,7 +189,7 @@ Only the cosine similarity fitness function will be used, as the \ac{NCD} fitnes
 Using trade-off studies the worst results were eliminated from all algorithms.
 
 \chapter{Features and Functionality}
-The main goal of the application is to generate melodies according to a certain styles. The user is to select a certain category of music and the application will generate a musical piece in that style. The premise is to generate the melodies in a certain style using machine learning techniques that will use the data present in the corpus of MIDI files. 
+The main goal of the application is to generate melodies according to a certain style. The user is to select a certain category of music and the application will generate a musical piece in that style. The premise is to generate the melodies in a certain style using machine learning techniques that will use the data present in the corpus of MIDI files. 
 
 Since training machine learning algorithms take up a lot of time it is not feasible to train the algorithm on the fly. Training will take place beforehand and the resulting data structure of the algorithm will be cached to a file. 
 For example a Neural Network will save its topology and weights to a file; this allows the application to load the file, present inputs to the neural network and output a result without spending time learning the optimal weights for the network.
@@ -202,12 +202,12 @@ To summarize, the application will:
 \begin{enumerate}
 \item Implement the selected algorithms and allow them to be used for song generation.
 \item Allow saving and loading of \ac{MIDI} files
-\item Generate a monophonic melody according to a certain style. Allow the user to select which algorithm to use and adjust high level parameters
+\item Generate a monophonic melody according to a certain style. Allow the user to select which algorithm to use and adjust high-level parameters
 \item Playback functionality including playing, pausing and stop a song. 
-\item Feature a user friendly interface.
+\item Feature a user-friendly interface.
 \item Visually display the generated melody.
 \item Allow the user to randomize the song based on the selected settings.
-\item Cache machine learning data to improve performance of the application.
+\item Cache machine learning data to improve the performance of the application.
 \end{enumerate}
 
 \chapter{Graphical user interface}
@@ -220,7 +220,7 @@ As mentioned above the user interface is to have the following features
 \begin{itemize}
 \item Visually display the generated song.
 \item Selecting the category of melodies to be generated.
-\item Select algorithm and high level parameters.
+\item Select algorithm and high-level parameters.
 \item Buttons to allow for saving, loading, pausing, pausing, stopping and playing of songs.
 \end{itemize}
 
@@ -283,7 +283,7 @@ The visualization blocks in figures \ref{ims:uicompose} and \ref{ims:uitrack} wi
 \label{ims:alphatab}
 \end{figure}
 
-AlphaTab is a cross platform music notation and guitar tablature rendering library. It is the only music notation library available on C\# which will fit the need for visualization of notes required.
+AlphaTab is a cross-platform music notation and guitar tablature rendering library. It is the only music notation library available on C\# which will fit the need for visualization of notes required.
 Figure \ref{ims:alphatab} indicates a music sheet rendered with Alphatab. Note that Alphatab is geared towards guitarists and provides a lot more information which is unwanted for a simple visualization. 
 
 Since the library is open source it will be modified to suit our needs. Guitar tabs, timing information, lyrics and any other excessive information will be removed. In addition it is necessary to show which note is currently played when a melody is played. The active note will be displayed in red.

@@ -6,7 +6,7 @@
 \chapter{Results}
 
 \section{Introduction}
-This chapter outlines the results, including the design of the user interface, functionality of the application and a short summary of the results of the incorporated algorithms.
+This chapter outlines the results, including the design of the user interface, the functionality of the application and a short summary of the results of the incorporated algorithms.
 The majority of the results have already been covered in part \ref{part:algo}, however a discussion is provided.
 
 \section{User interface}
@@ -28,9 +28,9 @@ Figure \ref{ims:metricsharryt0} shows the frequency metrics for the first track 
 Figure \ref{ims:uitrackgenalltabs} shows the track generator with all of the available tabs.
 These tabs provide the following features:
 \begin{enumerate}
-\item Genetic - Generates a melody using genetic algorithm. Allows selection of which frequency metrics to use with the cosine similarity fitness function.
+\item Genetic - Generates a melody using a Genetic Algorithm. Allows selection of which frequency metrics to use with the cosine similarity fitness function.
 \item Instrumental - Generates a melody using Markov Chains for a particular instrument.
-\item Accompaniment - Generates a accompaniment melody for a main melody track using a Markov model or a \ac{ANN}.
+\item Accompaniment - Generates an accompaniment melody for a main melody track using a Markov model or a \ac{ANN}.
 \item Load - Loads an existing melody or modifies an extant melody using stochastic sampling
 \item Random - Generates a random melody using a random walk in a specific scale.
 \end{enumerate}
@@ -104,13 +104,13 @@ Some interesting subjective observations made include:
 The aim of this project was to design an application that is able to compose melodies in a certain musical style using machine learning algorithms. A brief survey was done on existing attempts to compose melodies algorithmically.
 \\
 
-Evolutionary algorithms are versatile and are well suited to the the task of musical composition. The task of designing a good fitness function for a genetic algorithm is rather formidable.
-Musical composition is a emotional human process and is subjective in nature. This makes formalization of what constitutes a good melody difficult. 
+Evolutionary algorithms are versatile and are well suited to the task of musical composition. The task of designing a good fitness function for a genetic algorithm is rather formidable.
+Musical composition is an emotional human process and is subjective in nature. This makes formalization of what constitutes a good melody difficult. 
 An attempt was made by using the \ac{NCD} to rate the fitness of melodies, however the results were not satisfactory.
-Decent results were obtained by using frequency metrics in conjunction with a similarity measure. This approach provides high fitness to individuals which have similar statistical properties to the target piece. The problem with the approach is that a high statistical similarity may be achieved but this does not necessarily imply that a individual will be perceived as pleasant or good.
+Decent results were obtained by using frequency metrics in conjunction with a similarity measure. This approach provides high fitness to individuals which have similar statistical properties to the target piece. The problem with the approach is that a high statistical similarity may be achieved but this does not necessarily imply that an individual will be perceived as pleasant or good.
 \\
 
-A different approach was taken thereafter, other than relying on statistical properties and requiring a function to quantify the pleasantness of a melody. A probabilistic approach was taken to predict the pattern of melodies. By employing the Markov property - the probability distribution of future states depend only upon the present states simplifications can be made and Markov Models can be designed. The simplest Markov Model, the Markov Chain produced pleasant results. A third order Markov Chain, where the next note is determined by the preceding 3 notes produced pleasant results without sacrificing too much novelty and avoiding too much similarity. By employing another Markov Model, attempt was made to produce an accompaniment for a melody, by calculating the probabilities for an accompaniment note by the preceding 2 notes in the melody track. This Markov Model also yielded satisfactory results however more work is required on timing and synchronization.
+A different approach was taken thereafter, other than relying on statistical properties and requiring a function to quantify the pleasantness of a melody. A probabilistic approach was taken to predict the pattern of melodies. By employing the Markov property - the probability distribution of future states depend only upon the present states simplifications can be made and Markov Models can be designed. The simplest Markov Model, the Markov Chain produced pleasant results. A third order Markov Chain, where the next note is determined by the preceding 3 notes produced pleasant results without sacrificing too much novelty and avoiding too much similarity. By employing another Markov Model, an attempt was made to produce an accompaniment for a melody, by calculating the probabilities for an accompaniment note by the preceding 2 notes in the melody track. This Markov Model also yielded satisfactory results however more work is required on timing and synchronization.
 Overall these probabilistic models yield good results, however the melodies produce lack an overarching theme and structure. Furthermore since Markov Models require a input dataset in order to calculate the state transition and observation emission probabilities, the novelty and composition value are low. These models produce pleasant results but are not creative or original. This is in contrast to the evolutionary algorithms.
 \\
 

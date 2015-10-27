@@ -57,7 +57,7 @@ The algorithm will utilize a category of \ac{MIDI} files from the \ac{MIDI} libr
 
 The output piece of music will represent the style of music that was used as input.
 
-Various machine learning algorithms are investigated. The results of the investigation is covered in part \ref{part:algo}.
+Various machine learning algorithms are investigated. The results of the investigation are covered in part \ref{part:algo}.
 
 \subsection{Functional Unit 5 - Storage}
 This unit is responsible for storing the output \ac{MIDI} from the algorithm into a \ac{MIDI} file.
@@ -69,7 +69,7 @@ This unit is responsible for playing back the output \ac{MIDI} from the algorith
 The interfaces indicate the interaction between different functional units.
 The interfaces have the following functions:
 \begin{enumerate}
-\item Interface between the user and the user interface. This input would be from a input peripheral device.
+\item Interface between the user and the user interface. This input would be from an input peripheral device.
 \item Interface between the user interface and the algorithm. The interface calls the algorithm with the parameters supplied by the user such as when to start and what type of style was selected
 \item Interface between the \ac{MIDI} library and the algorithm. The input to the algorithm is a selection of \acp{MIDI}. The interface converts \ac{MIDI} files into a format required by the algorithm
 \item Interface between the algorithm and storage. This interface converts the output from the algorithm into the \ac{MIDI} file format
@@ -113,7 +113,7 @@ Some considerations need to be taken to ensure that the interface to the applica
 \item The design of the interface should be clean and minimalistic. 
 \item Clear instructions should be given to the user when there is a possibility of ambiguity.
 \item Images and icons should be used as visual aids for buttons or to indicate the function of a feature
-\item Separate functional features should be separated in the interface. The following areas should have seperate section in the interface
+\item Separate functional features should be separated in the interface. The following areas should have separate section in the interface
 	\begin{itemize}
 	\item Playback, saving and loading
 	\item Generation of melodies
@@ -121,10 +121,10 @@ Some considerations need to be taken to ensure that the interface to the applica
 	\end{itemize} 
 \end{enumerate}
 
-Functionally, it makes sense for the user to choose the filename and path of the melody to be saved. Similarly the user should be able to select which previously generated melody should be loaded.
+Functionally, it makes sense for the user to choose the filename and path of the melody to be saved. Similarly, the user should be able to select which previously generated melody should be loaded.
 
 \chapter{Conclusion}
-In order to solve the problem of generating music algorithmically the task was broken down into its functional architecture. From this each functional unit and its interaction is made apparent. A clear separation was made between the different components and work can be done on each separately. 
+In order to solve the problem of generating music algorithmically, the task was broken down into its functional architecture. From this, each functional unit and its interaction is made apparent. A clear separation was made between the different components and work can be done on each separately. 
 
 The core component of this project is the algorithm which is used to compose music. Possible machine learning algorithms will be investigated and implemented. Algorithms yielding good results will be kept for inclusion into the application. Possible music categories which serve as input datasets to the algorithms will also be investigated.
 

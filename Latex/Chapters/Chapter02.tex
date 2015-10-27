@@ -25,7 +25,7 @@ Li and Sleep have found that a given piece of music remains recognizable when th
 \section{Midi}
 Music can be stored digitally in a variety of formats and encodings. This allows repeated performance of the same track and also eases distribution of the music.
 
-\ac{MIDI} is a standard which describes the protocol, digital interface and connectors that allows electronic instruments to communicate with one another.
+\ac{MIDI} is a standard which describes the protocol, digital interface and connectors that allow electronic instruments to communicate with one another.
 
 The \ac{MIDI} 1.0 detailed specification fully describes the \ac{MIDI} interface \cite{MIDIManufacturersAssosciation1995}
 
@@ -113,7 +113,7 @@ A simple melody consisting only of a few notes could be represented as seen in f
 
 However it might be preferable to encode more events such rests, chords, dynamics, note duration and so on.
 
-Tree based representations are found in genetic programming \cite{Langdon2008}. Minsky has argued that tree representation is more suited to music as it mimics the hierarchical structure that is found in music \cite{Minsky1992}.
+Tree-based representations are found in genetic programming \cite{Langdon2008}. Minsky has argued that tree representation is more suited to music as it mimics the hierarchical structure that is found in music \cite{Minsky1992}.
 
 A melody could be represented in tree form as seen in figure \ref{ims:gp_melody}. The bottom leaves denote the pitch and duration. The higher level nodes perform operations.
 
@@ -142,7 +142,7 @@ A melody could be represented in tree form as seen in figure \ref{ims:gp_melody}
 
 Johanson and Poli employ several different operators including mirroring, concatenation, repetition and mirroring \cite{Johanson1998}
 
-Tree based representations do not have a fixed size, as is commonly found in linear genetic representations. Care must be taken to not let the structure become too large. This is typically done by specifying the maximum depth of the tree.
+Tree-based representations do not have a fixed size, as is commonly found in linear genetic representations. Care must be taken to not let the structure become too large. This is typically done by specifying the maximum depth of the tree.
 
 %********************************************************************************************************
 %********************************************************************************************************
@@ -163,9 +163,9 @@ Tree based representations do not have a fixed size, as is commonly found in lin
 
 
 
-\ac{HMM} are stochastic methods that are used to model sequential data such as speech and gesture recognition \cite{Rabiner1989}. Both the underlying process which is hidden is stochastic and the observable process. Only a first order hidden markov model will be considered.
+\ac{HMM} are stochastic methods that are used to model sequential data such as speech and gesture recognition \cite{Rabiner1989}. Both the underlying process which is hidden is stochastic and the observable process. Only a first order \ac{HMM} will be considered.
 
-Under the Markov property the next state is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. When a event is generated from a state, the model moves into a new state based on its transition probabilities. The term hidden is commonly used to indicate that many different state sequences can generate the same observed sequence of events.
+Under the Markov property, the next state is only dependent on the current state of the system. Such states may not be known and may be hidden from the observer as only the output values are observable. When an event is generated from a state, the model moves into a new state based on its transition probabilities. The term hidden is commonly used to indicate that many different state sequences can generate the same observed sequence of events.
 
 The \ac{HMM} is formally defined by the triple:
 \[\lambda = (A,B,\pi) \]
@@ -177,7 +177,7 @@ and the emission probabilities are given by:
 and the initial state probabilities by:
 \[ \pi = P(q_1 = s_i) \]
 
-Given a sequence of observations we want to compute the probability of an observation sequence given the model.
+Given a sequence of observations, we want to compute the probability of an observation sequence given the model.
 
 The probability of the observation sequence $O$ for a state sequence is given by:
 \[ P(O|Q,\lambda) = \prod^T_{t=1} P(o_t | q_t,\lambda) \]
@@ -190,7 +190,7 @@ The forward algorithm calculates this efficiently by caching previous calculatio
 
 \subsection{Training}
 
-A variety of learning algorithms exist which compute the structure of the model and also calculate the emission and transmission matrices. The Baum-Welch is a unsupervised learning algorithm which re-estimates the parameters $(A,B,\pi)$. The training problem can be solved in terms of joint events and state variables \cite{Baum1970}.
+A variety of learning algorithms exist which compute the structure of the model and also calculate the emission and transmission matrices. The Baum-Welch is an unsupervised learning algorithm which re-estimates the parameters $(A,B,\pi)$. The training problem can be solved in terms of joint events and state variables \cite{Baum1970}.
 
 The joint variable $\xi_t(i,j) = P(q_t = S_i, q_{t+1} = S_j|S, \lambda)$ is given by:
 \[ \frac{\alpha_t (j) a_{ij} b_j (O_{t+1}) \beta_{t+1}(j) }{\sum_{k=1}^N \sum_{l=1}^N \alpha_t (k) a_{kl} b_l (O_{t+1}) \beta_{t+1}(l) } \] 
@@ -226,7 +226,7 @@ A Markov Chain is a stochastic model describing a sequence of events. The Markov
 
 Figure \ref{ims:markov_chain_example} is an example of a Markov Chain. For each state there is a probability of proceeding to the next state. For example if the current state is F, there is a $10\%$ chance of the next state being F again, and a $90\%$ chance of the next state being A.
 
-A Markov Chain can have a order. For a simple note such as figure \ref{ims:markov_chain_example} if the current note is B then the note $A$ has a $30\%$ chance of being next. This is a first order Markov Chain.  A more complex chain of order 2 could have the current state being composed of two notes. Thus the next note is dependent on the previous two notes. A N-th order Markov chain can be represented by a transition matrix, which corresponds to a N+1 dimension probability table.
+A Markov Chain can have an order. For a simple note such as figure \ref{ims:markov_chain_example} if the current note is B then the note $A$ has a $30\%$ chance of being next. This is a first order Markov Chain.  A more complex chain of order 2 could have the current state being composed of two notes. Thus the next note is dependent on the previous two notes. An N-th order Markov chain can be represented by a transition matrix, which corresponds to a N+1 dimension probability table.
 
 For a Markov Chain of order $m$ the following holds:
 \[
@@ -237,7 +237,7 @@ For a Markov Chain of order $m$ the following holds:
 For $n > m$
 
 \subsection{Composition}
-Markov Chains must be derived from existing music and generate output of the same style as the input. This reduces the compositional value and novelty however it suits the purpose of generating music in a specific style \cite{Jarvelainen2000}.
+Markov Chains must be derived from existing music and output music of the same style as the input. This reduces the compositional value and novelty however it suits the purpose of generating music in a specific style \cite{Jarvelainen2000}.
 
 Context models such as Markov Chains have several advantages that are useful in algorithmic music composition \cite{Conklin2003}:
 \begin{itemize}
@@ -329,7 +329,7 @@ The topology of the network was arranged as follows:
 \item Output units for chords are connected to cell blocks for chords and to input units for chords
 \item Output units for melody are connected to cell blocks for melody and to input units for melody
 \end{enumerate}
-The underlaying chord structure was kept fixed.
+The underlying chord structure was kept fixed.
 
 The results indicate that a \ac{LSTM} network is able to compose with both local- and global structure from a set of training data \cite{Eck2002}.
 
@@ -338,7 +338,7 @@ The results indicate that a \ac{LSTM} network is able to compose with both local
 
 Simple feed-forward neural networks do not have the functionality to remember past history and thus do not have the capability to evaluate repetitive rhythmic patterns.
 
-Recurrent neural networks are able to encode temporal information though initial investigation by Mozer lead to limited success as compositions lacked global structure. 
+Recurrent neural networks are able to encode temporal information although the initial investigation by Mozer lead to limited success as compositions lacked global structure. 
 
 Further investigations by Douglas and Jurgen indicated that \ac{LSTM} networks are able to compose with local and global structure.
 
@@ -346,7 +346,7 @@ Further investigations by Douglas and Jurgen indicated that \ac{LSTM} networks a
 \section{Genetic Algorithms}
 \subsection{Background}
 
-Genetic Programming, not to be confused with evolutionary or genetic algorithms is a evolutionary algorithm based methodology to find computer programs that perform defined tasks by simplistically mirroring biological evolution.
+Genetic Programming, not to be confused with evolutionary or genetic algorithms is an evolutionary algorithm-based methodology to find computer programs that perform defined tasks by simplistically mirroring biological evolution.
 The more fit programs carry on their chromosomes into future populations. Fitness is rated by a fitness function. Other genetic operators such as recombination and crossover are also usually applied. 
 These evolved genetic programs are usually represented in tree form. Figure \ref{ims:gpt} indicates the function $ (2.2) - (\frac{X}{11}) + 7\cos(Y)$ written in tree form.
 \begin{figure}[!bh]
@@ -357,7 +357,7 @@ These evolved genetic programs are usually represented in tree form. Figure \ref
 
 A genetic algorithm consists of the following components:
 \begin{enumerate}
-\item Representation for chromosomes\footnote{Also commonly referred to as an individuals}
+\item Representation for chromosomes\footnote{Also commonly referred to as individuals}
 \item Initial population of chromosomes
 \item A set of genetic operators to alter the population
 \item A fitness function to assess the fitness of an individual
@@ -376,20 +376,20 @@ The algorithm proceeds as follows:
 Genetic operators are used to generate diversity A genetic algorithm has a fixed set of genetic operators. Operators may include:
 \begin{itemize}
 \item Reproduction - A parent from the population is carried over to the next generation
-\item Crossover - genotype of both parents are combined using different procedures
+\item Crossover - genotypes of both parents are combined using different procedures
 \item Mutation - A single mutation is applied to a chromosome at a set mutation rate
 \end{itemize}
 
 The choice of a fitness function is a big problem when using a genetic algorithm to compose music \cite{Wiggins1998,Matic2010}. There is no objective method to rate whether a melody is good or bad \cite{Lo2012}. 
 Traditionally when posed against such tasks the fitness function is provided interactively by the user, i.e. the user rates whether the piece is good or bad
 
-The interactive GA approach is an approach to the fitness function where a human interactively rates the quality of a composition (fitness). A well known software that utilizes a neural network and a interactive interaction for a fitness function is GenJam \cite{Biles1996}. The drawback of having the user interactively evaluate the fitness of individuals is that it is time consuming and poses a processing bottleneck \cite{Eck2002}
+The interactive GA approach is an approach to the fitness function where a human interactively rates the quality of a composition (fitness). A well-known software that utilizes a neural network and an interactive interaction for a fitness function is GenJam \cite{Biles1996}. The drawback of having the user interactively evaluate the fitness of individuals is that it is time consuming and poses a processing bottleneck \cite{Eck2002}
 
 Selection is the choice of which individuals will be chosen for the next generation. Selection concerns the reproduction and crossover operators. Some methods of selection include: 
 \begin{itemize}
-\item Roulette wheel selection - chance of individual being chosen is proportional to fitness
-\item Tournament selection - tournament is staged between two individuals to determine which one gets selected\footnote{This is tournament selection in its simplest form}.
-\item Elitist selection - commonly the best few individuals are kept unchanged but are eligible to be selected as parents.
+\item Roulette wheel selection - The chance of individual being chosen is proportional to fitness
+\item Tournament selection - A tournament is staged between two individuals to determine which one gets selected\footnote{This is tournament selection in its simplest form}.
+\item Elitist selection - Commonly the best few individuals are kept unchanged but are eligible to be selected as parents.
 \end{itemize}
 
 \subsection{Composition}
@@ -415,7 +415,7 @@ and a final note pattern of:
 \begin{verbatim}F Ab Eb \end{verbatim}
 the musical output could be:
 \begin{verbatim}Gb Bb F Ab Bb F Ab Gb Bb F Ab Eb F Ab F Ab Eb \end{verbatim} by means of various operations such as mutation, rotation, deletion and so on.
-For thematic bridging a composite fitness function was used which rates how close the developed pattern matches the final pattern and whether the ordering of the elements are correct 
+For thematic bridging a composite fitness function was used which rates how close the developed pattern matches the final pattern and whether the ordering of the elements is correct 
 \\
 \\
 Similarly a system of variations was developed Jacob that proceeds as follows \cite{Jacob1995}:
@@ -461,7 +461,7 @@ Fitness functions for genetic algorithms are considered in chapter \ref{sec:chap
 
 \chapter{Music classification} \label{sec:music_class}
 \section{Introduction}
-In this section we will investigate methods of music classification. If some algorithm is a good method to rate the closeness of a song to a genre or style then it may also serve as a good fitness function for a evolutionary algorithm.
+In this section we will investigate methods of music classification. If some algorithm is a good method to rate the closeness of a song to a genre or style then it may also serve as a good fitness function for an evolutionary algorithm.
 %\section{Feature set patterns}
 %Melody classification using patterns
 %Darrell Conklin
@@ -474,7 +474,7 @@ In this section we will investigate methods of music classification. If some alg
 
 \section{Normalized Compression Distance} \label{sec:class_ncd}
 \subsection{Background}
-The Kolmogorov complexity of piece of text is the measure of the computable resources needed to specify the text. The complexity of a string is the length of the shortest possible description of the string in a fixed universal description language \cite{Kolmogorov1998387}.
+The Kolmogorov complexity of a piece of text is the measure of the computable resources needed to specify the text. The complexity of a string is the length of the shortest possible description of the string in a fixed universal description language \cite{Kolmogorov1998387}.
 
 The information distance between two string $x$ and $y$ is defined as the length of the shortest program $p$ that can compute $x$ from $y$ and $y$ from $x$
 The length of $p$ can be expressed using Kolmogorov complexity \cite{681318}:
@@ -512,7 +512,7 @@ The midi files were organized into four categories Beethoven (302 files), Haydn 
 In \cite{Alfonseca2007, Alfonseca:2005:ECM:1981094.1981161, Ling2004,Alfonseca2006} it was found that the normalized compression distance serves as a promising fitness function for genetic algorithms for automatic music generation. Thus \ac{NCD} may be viably used as a fitness function for a genetic algorithm and as a metric to help classify music.
 
 \section{Neural Networks}
-McKay investigate using K-nearest neighbor techniques and artificial neural networks in order to classify \ac{MIDI} music by genre.
+McKay investigated K-nearest neighbor techniques and artificial neural networks in order to classify \ac{MIDI} music by genre.
 He included some of the following metrics as input to the neural network \cite{Mckay2004}:
 \begin{itemize}
 \item Number of notes - standard deviation of number of notes activated in each channel
@@ -680,7 +680,7 @@ Burton had the \ac{ART} network fitness function operate as follows \cite{Burton
 \item Fitness is assigned as a degree of similarity to a cluster. 
 \end{enumerate}
 
-NEUROGEN is another attempt at using a neural network as a fitness function to compose small diatonic, western, four part harmony compositions.
+NEUROGEN is another attempt at using a neural network as a fitness function to compose small diatonic, western, four-part harmony compositions.
 The system has shown limited success however it was able to produce 4 bars of music \cite{gibson1991neurogen}.
 \\
 \\
@@ -713,12 +713,12 @@ Genetic algorithms which employ user interaction as a means of rating the fitnes
 
 Unehara constructed a system that composes 16-bars music using a GA \cite{Unehara}. The user rates individual chromosomes, new chromosomes are applied by genetic algorithm and the user is asked to rate the individuals again. Should the user find a good piece they may favorite it. The fitness of the chromosomes were seen to increase as the generations increased, however it is unknown whether the melodies were pleasant.
 
-Using an interactive fitness function may lead to better results than most other fitness functions however it is a tedious and demanding process and may also lead to inconsistencies in evaluation.
-Some researches try to reduce this effect by constructing \acp{ANN} which learn the user's ratings, and as such may be used in place of the interactive fitness function \cite{Biles1996,Spector_inductionand}. See section \ref{sec:ANN_fitness} for the use of \acp{ANN} as fitness functions.
+Using an interactive fitness function may lead to better results than most other fitness functions, however it is a tedious and demanding process and may also lead to inconsistencies in evaluation.
+Some researchers try to reduce this effect by constructing \acp{ANN} which learn the user's ratings, and as such may be used in place of the interactive fitness function \cite{Biles1996,Spector_inductionand}. See section \ref{sec:ANN_fitness} for the use of \acp{ANN} as fitness functions.
 
 Johnson and Poli had a user rate individual sequences and trained a neural network base automatic rater, which may replace the user in larger runs. The musical pieces generated by the automatic rater were pleasant but they were not as pleasant as the musical pieces generated by the user interactive runs \cite{Johanson1998}
 
-The superiority of a interactive fitness can be seen, as a person can rate the pleasantness, or fitness of a song much more accurately than current quantitative fitness functions. However this imposes a bottleneck on the system as it is time consuming. A partially interactive system may yield a good compromise \cite{Biles1996}.
+The superiority of an interactive fitness can be seen, as a person can rate the pleasantness, or fitness of a song much more accurately than current quantitative fitness functions. However this imposes a bottleneck on the system as it is time consuming. A partially interactive system may yield a good compromise \cite{Biles1996}.
 
 
 \chapter{Conclusion}
