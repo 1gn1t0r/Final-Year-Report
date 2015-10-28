@@ -41,7 +41,7 @@
 \documentclass[ oneside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
                 footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
                 paper=a4,fontsize=11pt,%11pt,a4paper,%
-                ngerman,american,%
+                american,%
                 ]{scrreprt}
 
 %********************************************************************
@@ -86,18 +86,18 @@
 %\setcounter{page}{90}
 % use \cleardoublepage here to avoid problems with pdfbookmark
 \cleardoublepage
-\part{Introduction}
+\part{Introduction}\label{part:intro}
 \include{Chapters/Chapter01}
-\part{Literature Review}
+\part{Literature Review}\label{part:lit}
 \include{Chapters/Chapter02}
 \cleardoublepage
-\part{Conceptual Design}
+\part{Conceptual Design} \label{part:concept}
 \include{Chapters/Chapter03}
 \part{Algorithm Design} \label{part:algo}
 \include{Chapters/Chapter04}
-\part{Detail Design}
+\part{Detail Design} \label{part:detail}
 \include{Chapters/Chapter05}
-\part{Denouement}
+\part{Denouement} \label{part:concl}
 \include{Chapters/Chapter06}
 \cleardoublepage
 %\ctparttext{You can put some informational part preamble text here. 

@@ -295,8 +295,27 @@ For a multi layer network with multiple output units the back propagation algori
 The error needs to be summed over all the network output units
 \[E(\vec{w}) = \frac{1}{2} \sum_{d \in D} \sum_{k \in \text{outputs}} (t_{kd} - \sigma_{kd})^2 \]
 
-The back-propagation algorithm to determine the weights of a feed-forward neural network is given in appendix \ref{chap:app_algo}
-
+\subsection{Training using Backpropogation}
+For a feed forward network\footnote{Other topologies exist with more complex methods for obtaining the weights} with $n_\text{in}$ inputs, $n_\text{hidden}$ hidden units and $n_\text{out}$ output units the back-propagation algorithm works as follows
+\begin{enumerate}
+\item Initialize network with random weights
+\item Repeat until algorithm terminates
+\item 
+\begin{itemize}
+\item $\forall (\vec{x},\vec{t}) \in \text{training examples}$ do
+\item 
+\begin{enumerate}
+\item Input instance $\vec{x}$ to network and compute $o_u\ \forall\ u\ \in \text{network}$
+\item For each network output unit $k$ calculate error term\\
+$\delta_k \leftarrow o_k (1-o_k)(t_k - o_k)$
+\item For each hidden unit $h$ calculate the error term $\delta_h$\\
+$\delta_h \leftarrow o_h (1- o_h) \sum_{k \in \text{outputs}} w_{kh}\delta_k$
+\item Update each network weight $w_{ji}$\\
+$w_{ji} \leftarrow w_{ji} + \eta \delta_j x_{ji}$
+\end{enumerate}
+\end{itemize}
+\end{enumerate}
+The complete derivation of the back-propagation algorithm for feed forward artificial neural networks can be found in Mitchell (2007) \cite{Mitchell1997}
 
 \subsection{Composition}
 Neural networks have been used in music classification, in genetic algorithms as fitness functions and more complex neural networks have even been used in algorithmic music compositions.
