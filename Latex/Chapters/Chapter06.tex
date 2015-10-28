@@ -43,7 +43,7 @@ These tabs provide the following features:
 
 Figure \ref{ims:res_ui_playback} shows the play tab of the main window. The play tab offers access to all playback functionality including playing, stopping and seeking the position of a melody.
 In addition the play tab allows the user to re-randomize the melody. The current melody can be saved or an existing melody can be loaded.
-Lastly the play tab shows a visualization of the current song playing. A note being played is highlighted in red.
+Lastly, the play tab shows a visualization of the current song playing. A note being played is highlighted in red.
 
 \begin{figure}
 \centerline{\includegraphics[width=400px]{../images/res_ui_generate_tab.png}}
@@ -110,7 +110,7 @@ An attempt was made by using the \ac{NCD} to rate the fitness of melodies, howev
 Decent results were obtained by using frequency metrics in conjunction with a similarity measure. This approach provides high fitness to individuals which have similar statistical properties to the target piece. The problem with the approach is that a high statistical similarity may be achieved but this does not necessarily imply that an individual will be perceived as pleasant or good.
 \\
 
-A different approach was taken thereafter, other than relying on statistical properties and requiring a function to quantify the pleasantness of a melody. A probabilistic approach was taken to predict the pattern of melodies. By employing the Markov property - the probability distribution of future states depend only upon the present states simplifications can be made and Markov Models can be designed. The simplest Markov Model, the Markov Chain produced pleasant results. A third order Markov Chain, where the next note is determined by the preceding 3 notes produced pleasant results without sacrificing too much novelty and avoiding too much similarity. By employing another Markov Model, an attempt was made to produce an accompaniment for a melody, by calculating the probabilities for an accompaniment note by the preceding 2 notes in the melody track. This Markov Model also yielded satisfactory results however more work is required on timing and synchronization.
+A different approach was taken thereafter, other than relying on statistical properties and requiring a function to quantify the pleasantness of a melody. A probabilistic approach was taken to predict the pattern of melodies. By employing the Markov property - the probability distribution of future states depend only upon the present states simplifications can be made and Markov Models can be designed. The simplest Markov Model, the Markov Chain produced pleasant results. A third order Markov Chain, where the next note is determined by the preceding three notes produced pleasant results without sacrificing too much novelty and avoiding too much similarity. By employing another Markov Model, an attempt was made to produce an accompaniment for a melody, by calculating the probabilities for an accompaniment note by the preceding two notes in the melody track. This Markov Model also yielded satisfactory results however more work is required on timing and synchronization.
 Overall these probabilistic models yield good results, however the melodies produce lack an overarching theme and structure. Furthermore since Markov Models require a input dataset in order to calculate the state transition and observation emission probabilities, the novelty and composition value are low. These models produce pleasant results but are not creative or original. This is in contrast to the evolutionary algorithms.
 \\
 
@@ -132,9 +132,9 @@ In this chapter some ideas for future work on the application are summarized.
 The ideas for future work include:
 
 \begin{itemize}
-\item If the application is to be used for background application let the algorithms generate piece of infinite length and continuously play the melodies.
+\item If the application is to be used for background application let the algorithms generate a piece of infinite length and continuously play the melodies.
 \item Further work is required on accompaniment generation.
-\item Classical music can be split into multiple sub categories. One idea is to have a different style for each famous composer.
+\item Classical music can be split into multiple sub-categories. One idea is to have a different style for each famous composer.
 \item Support for chords and polyphonic melodies. Algorithms can be extended to support this.
 \item Further work can be done using recurrent neural networks for melody generation rather than accompaniment generation.
 \item The algorithmic music composition field is large. There are a multitude of other algorithms which can be implemented.
